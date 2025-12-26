@@ -1,0 +1,230 @@
+.discover-page {
+  padding: 40px 0 80px;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.discover-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 48px;
+  font-weight: 700;
+  color: #000;
+}
+
+.discover-title .count {
+  color: #333;
+}
+
+.discover-title .highlight {
+  color: #FDB714;
+}
+
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 60px;
+  border-bottom: 2px solid #e0e0e0;
+  overflow-x: auto;
+  padding: 0 20px;
+}
+
+.category-tab {
+  padding: 15px 25px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+
+.category-tab:hover {
+  color: #000;
+}
+
+.category-tab.active {
+  color: #000;
+  font-weight: 600;
+}
+
+.category-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #000;
+}
+
+.influencers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.influencer-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 1;
+}
+
+.influencer-card .influencer-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.1);
+}
+
+.initials {
+  font-size: 90px;
+  font-weight: 900;
+  color: white;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  letter-spacing: 3px;
+}
+
+.influencer-card .influencer-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.influencer-card:hover .influencer-image img {
+  transform: scale(1.05);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  color: white;
+  text-align: center;
+}
+
+.influencer-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.arrow-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  background: #FDB714;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+.card-overlay h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.category-text {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+.followers-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 15px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.instagram-icon {
+  font-size: 18px;
+}
+
+.view-insights-btn {
+  background: #FDB714;
+  color: #000;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.view-insights-btn:hover {
+  background: #ffc107;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(253, 183, 20, 0.4);
+}
+
+@media (max-width: 1200px) {
+  .influencers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .discover-title {
+    font-size: 32px;
+  }
+  
+  .category-tabs {
+    justify-content: flex-start;
+    padding: 0 10px;
+  }
+  
+  .category-tab {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+  
+  .influencers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 0 10px;
+  }
+  
+  .card-overlay h3 {
+    font-size: 18px;
+  }
+  
+  .arrow-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+}

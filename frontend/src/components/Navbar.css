@@ -1,0 +1,163 @@
+.navbar {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-item {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 0;
+}
+
+.nav-item.dropdown {
+  padding-bottom: 20px;
+}
+
+.nav-item span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.nav-item:hover span {
+  color: #FDB714;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 220px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 10px 0;
+  margin-top: 0;
+  animation: fadeIn 0.2s ease;
+  border-top: 3px solid #FDB714;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  display: block;
+  padding: 12px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.dropdown-item:hover {
+  background: #FFF8E1;
+  color: #FDB714;
+  padding-left: 25px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-primary {
+  background: #FDB714;
+  color: #000;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: white;
+  color: #000;
+  padding: 12px 25px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .nav-menu,
+  .nav-buttons {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

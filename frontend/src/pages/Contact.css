@@ -1,0 +1,229 @@
+.contact-page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: #fff;
+    /* or match body background */
+}
+
+.contact-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    /* Constrain width */
+    min-height: 600px;
+    gap: 30px;
+    /* Separating the two containers */
+}
+
+.contact-left {
+    flex: 1;
+    background-color: #FDB714;
+    padding: 60px;
+    color: #333;
+    /* Remove min-width to let flex handle it smoothly, or keep small */
+    min-width: 300px;
+}
+
+.contact-left h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.contact-left p {
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+.contact-info-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    /* background: rgba(255, 255, 255, 0.2); Removed background to match screenshot cleanliness if needed, or keep it */
+    background: transparent;
+    padding: 10px 0;
+}
+
+.info-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.office-locations {
+    margin-top: 50px;
+}
+
+.office-locations h3 {
+    margin-bottom: 20px;
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+
+.location-tabs {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    /* border-bottom: 2px solid #333; Remove existing border, maybe style differently */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px;
+}
+
+.location-tab {
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    opacity: 0.7;
+}
+
+.location-tab.active {
+    opacity: 1;
+    border-bottom: 2px solid #000;
+    margin-bottom: -12px;
+    /* Pull down to overlap border */
+}
+
+.location-address {
+    display: flex;
+    align-items: flex-start;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.address-icon {
+    margin-right: 15px;
+    font-size: 1.5rem;
+    color: #fff;
+    /* Icon color update */
+}
+
+.contact-right {
+    flex: 1.2;
+    background-color: #fff;
+    padding: 60px;
+    min-width: 300px;
+    /* Add the requested yellow border to the container */
+    border: 2px solid #FDB714;
+    /* Or specifically a shadow that glows yellow? User said "border of container tyellow" */
+}
+
+.contact-right h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 400;
+}
+
+.contact-form-main {
+    width: 100%;
+    /* Remove inner border/shadow if the parent has it, or keep it subtle */
+    /* border: 1px solid #eee; */
+    padding: 0;
+    box-shadow: none;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.contact-form-main input[type="text"],
+.contact-form-main input[type="email"],
+.contact-form-main input[type="tel"],
+.contact-form-main input[type="url"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.contact-form-main input:focus {
+    border-color: #FDB714;
+    outline: none;
+}
+
+.radio-group {
+    margin-top: 25px;
+}
+
+.radio-group label:first-child {
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: block;
+    color: #000;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-weight: normal !important;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.radio-option input {
+    margin-right: 10px;
+    accent-color: #FDB714;
+    width: 16px;
+    height: 16px;
+}
+
+.submit-button {
+    background-color: #FDB714;
+    color: white;
+    border: none;
+    padding: 12px 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    /* Adjust alignment if needed */
+    display: inline-block;
+}
+
+.submit-button:hover {
+    background-color: #e5a500;
+}
+
+.form-feedback {
+    text-align: left;
+    margin-top: 15px;
+    color: green;
+}
+
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column;
+        max-width: 600px;
+    }
+}

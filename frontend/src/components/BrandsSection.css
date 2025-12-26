@@ -1,0 +1,64 @@
+.brands-section {
+  padding: 80px 20px;
+  background-color: #f1f0f2;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.brands-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brands-section h2 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 50px;
+}
+
+.impact-light {
+  font-weight: 300;
+}
+
+.brands-section .highlight {
+  color: #FDB714;
+}
+
+.brand-logos-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brand-impact-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.brand-impact-logo:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  /* This media query was for .brands-card-grid, which has been replaced. */
+  /* Keeping it empty or removing it depends on whether .brands-card-grid is completely gone. */
+  /* Based on the instruction, the grid system is replaced by the row system. */
+}
+
+@media (max-width: 768px) {
+  .brands-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .brands-section h2 {
+    font-size: 2.5rem;
+  }
+}

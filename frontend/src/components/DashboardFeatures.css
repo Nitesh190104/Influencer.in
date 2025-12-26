@@ -1,0 +1,224 @@
+.dashboard-features {
+    padding: 60px 0;
+    background-color: #fff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.features-main-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #555;
+    margin-bottom: 60px;
+}
+
+.roi-highlight {
+    color: #FDB714;
+    font-weight: 700;
+}
+
+.features-content-grid {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border: 1px solid #eee;
+    margin-bottom: 80px;
+    align-items: stretch;
+}
+
+/* Left Sidebar Tabs */
+.features-tabs-sidebar {
+    flex: 0 0 220px;
+    border-right: 1px solid #eee;
+    padding: 40px 0;
+}
+
+.feature-tab-item {
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    color: #777;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+    position: relative;
+    border: 1px dashed transparent;
+    margin: 10px 20px;
+}
+
+.feature-tab-item:hover {
+    color: #333;
+}
+
+.feature-tab-item.active {
+    background-color: #FDB714;
+    color: #000;
+    font-weight: 700;
+    border: 1px solid #FDB714;
+}
+
+.active-arrow {
+    position: absolute;
+    right: -10px;
+    color: #FDB714;
+    font-size: 14px;
+}
+
+/* Middle Mockup */
+.features-mockup-area {
+    flex: 1;
+    padding: 30px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mockup-container {
+    width: 100%;
+    max-width: 650px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.mockup-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Right Side CTA */
+.features-cta-sidebar {
+    flex: 0 0 250px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.feature-description {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.signup-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.signup-free-btn {
+    background-color: #FDB714;
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.signup-free-btn:hover {
+    background-color: #e5a500;
+}
+
+/* Bottom Section */
+.features-impact-section {
+    background-color: #f1f0f2;
+    padding: 60px 20px;
+    margin-top: 40px;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+.impact-heading {
+    text-align: center;
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.impact-light {
+    font-weight: 300;
+}
+
+.impact-highlight {
+    color: #FDB714;
+    font-weight: 700;
+}
+
+.brand-logos-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.brand-impact-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.brand-impact-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    /* No specific brand logo grid adjustments needed here for the new design */
+}
+
+@media (max-width: 768px) {
+    .brand-logos-row {
+        gap: 30px;
+    }
+
+    .brand-impact-logo {
+        height: 40px;
+    }
+
+    .impact-heading {
+        font-size: 2rem;
+    }
+}
+
+
+
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .features-content-grid {
+        flex-direction: column;
+    }
+
+    .features-tabs-sidebar {
+        flex: none;
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        padding: 20px;
+    }
+
+    .feature-tab-item {
+        margin: 0 10px;
+        flex-shrink: 0;
+    }
+}

@@ -1,0 +1,242 @@
+.hero-section {
+  background: linear-gradient(135deg, #8B6B47 0%, #6B4E71 50%, #C45BAA 100%);
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 60px 20px;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
+  width: 100%;
+}
+
+.hero-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.social-icons-left {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.social-icons-left .icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.social-icons-left .icon.facebook:hover {
+  background: #1877f2;
+}
+
+.social-icons-left .icon.instagram:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-icons-left .icon.youtube:hover {
+  background: #ff0000;
+}
+
+.hero-image-wrapper {
+  position: relative;
+}
+
+.hero-image {
+  width: 320px;
+  height: 420px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.character-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+}
+
+.character-silhouette {
+  width: 200px;
+  height: 350px;
+  background: linear-gradient(180deg, #999 0%, #666 100%);
+  clip-path: polygon(30% 0%, 70% 0%, 85% 20%, 85% 80%, 70% 100%, 30% 100%, 15% 80%, 15% 20%);
+}
+
+.decorative-elements {
+  position: absolute;
+  top: -20px;
+  right: -40px;
+}
+
+.paper-plane {
+  font-size: 70px;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.decorative-lines {
+  position: absolute;
+  top: 50px;
+  left: -20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.decorative-lines .line {
+  width: 60px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(-15deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(-15deg);
+  }
+}
+
+.slide-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.number {
+  font-size: 24px;
+  font-weight: bold;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.number:hover {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
+.number.highlight {
+  color: #FDB714;
+  opacity: 1;
+  font-size: 28px;
+}
+
+.hero-right {
+  flex: 1;
+}
+
+.hero-right h1 {
+  font-size: 52px;
+  line-height: 1.2;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.hero-right .highlight-number {
+  color: #FDB714;
+  font-weight: 800;
+}
+
+.cta-button {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 16px 45px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.cta-button:hover {
+  background: white;
+  color: #8B6B47;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.enquire-button {
+  background: #FDB714;
+  border: none;
+  color: #000;
+  padding: 16px 35px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  box-shadow: 0 8px 25px rgba(253, 183, 20, 0.4);
+  writing-mode: horizontal-tb;
+}
+
+.enquire-button:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 12px 35px rgba(253, 183, 20, 0.6);
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-left {
+    flex-direction: column;
+  }
+
+  .social-icons-left {
+    flex-direction: row;
+  }
+
+  .hero-right h1 {
+    font-size: 32px;
+  }
+
+  .enquire-button {
+    position: static;
+    transform: none;
+    margin-top: 20px;
+  }
+
+  .enquire-button:hover {
+    transform: scale(1.05);
+  }
+}

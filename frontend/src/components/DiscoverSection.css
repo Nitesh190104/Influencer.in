@@ -1,0 +1,150 @@
+.discover-section {
+  padding: 80px 20px;
+  background-color: #fff;
+}
+
+.discover-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.discover-main-heading {
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 70px;
+  line-height: 1.2;
+}
+
+.discover-section .highlight {
+  color: #FDB714;
+}
+
+.discover-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr 280px;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Tabs Sidebar */
+.discover-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.discover-tab-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #666;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.discover-tab-item.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.active-arrow {
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+/* Mockup Area */
+.discover-mockup-area {
+  background: #fff;
+  padding: 20px;
+}
+
+.discover-mockup-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+/* CTA Sidebar */
+.discover-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.discover-desc {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.discover-signup-block {
+  background: #f8f8f8;
+  padding: 30px;
+  border-radius: 15px;
+}
+
+.discover-signup-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.discover-signup-btn {
+  width: 100%;
+  background: #FDB714;
+  color: #000;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.discover-signup-btn:hover {
+  background: #e5a500;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .discover-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .discover-tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .discover-tab-item {
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .discover-main-heading {
+    font-size: 2.2rem;
+  }
+
+  .discover-signup-block {
+    padding: 20px;
+  }
+}

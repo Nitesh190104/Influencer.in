@@ -1,0 +1,272 @@
+.comedy-page {
+  padding-top: 80px;
+  background: #fff;
+  min-height: 100vh;
+}
+
+.comedy-hero {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 60px 0;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  cursor: default;
+}
+
+.breadcrumb span {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.breadcrumb span:hover {
+  color: #000;
+}
+
+.comedy-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.comedy-description {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.comedy-description p {
+  margin-bottom: 15px;
+}
+
+.comedy-grid-section {
+  padding: 60px 0;
+  background: #fff;
+}
+
+.influencers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.influencer-card {
+  background: transparent;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 0;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.influencer-card:hover {
+  transform: translateY(-5px);
+}
+
+.influencer-image-wrapper {
+  width: 280px;
+  height: 280px;
+  margin: 0 auto 15px;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.influencer-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.influencer-name {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  color: #0b1c33;
+  font-weight: 700;
+  padding: 0;
+}
+
+.influencer-category {
+  color: #4b5563;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding: 0;
+}
+
+.influencer-followers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #000;
+  font-size: 0.95rem;
+  padding: 0;
+}
+
+.instagram-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #E1306C;
+}
+
+.view-insights-button {
+  background-color: #FDB714;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  min-width: 180px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  margin-bottom: 25px;
+}
+
+.view-insights-button:hover {
+  background-color: #e5a500;
+  transform: scale(1.02);
+}
+
+.comedy-table-section {
+  padding: 60px 0 80px;
+  background: #f8f9fa;
+}
+
+.table-title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #000;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.influencers-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px;
+}
+
+.influencers-table thead {
+  background: #000;
+  color: white;
+}
+
+.influencers-table thead th:first-child {
+  background: #000;
+}
+
+.influencers-table thead th:nth-child(even) {
+  background: #FDB714;
+  color: #000;
+}
+
+.influencers-table th,
+.influencers-table td {
+  padding: 18px 20px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.influencers-table th {
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.influencers-table tbody tr {
+  transition: background 0.3s;
+}
+
+.influencers-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.name-cell {
+  font-weight: 600;
+}
+
+.table-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-btn {
+  background: #FDB714;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.contact-btn:hover {
+  background: #ffc107;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(253, 183, 20, 0.4);
+}
+
+@media (max-width: 768px) {
+  .comedy-title {
+    font-size: 32px;
+  }
+
+  .influencers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .influencer-image {
+    height: 300px;
+  }
+
+  .initials {
+    font-size: 70px;
+  }
+
+  .table-wrapper {
+    margin: 0 -20px;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .influencers-grid {
+    grid-template-columns: 1fr;
+    padding: 0 15px;
+  }
+
+  .influencer-image {
+    height: 350px;
+  }
+}

@@ -1,0 +1,342 @@
+.parenting-page {
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+.parenting-hero {
+    padding: 60px 0;
+    text-align: left;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-text-content {
+    flex: 1;
+}
+
+.hero-image-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.parenting-illustration {
+    font-size: 100px;
+    background: #fff;
+    /* Illustration styling */
+}
+
+.breadcrumb {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+}
+
+.breadcrumb span {
+    cursor: pointer;
+}
+
+.breadcrumb span:hover {
+    color: #FDB714;
+}
+
+.parenting-title {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #000;
+}
+
+.parenting-description {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+}
+
+.parenting-description p {
+    margin-bottom: 20px;
+}
+
+/* CTA Banner Strip */
+.cta-banner-strip {
+    background-color: #fff;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
+.cta-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.cta-text {
+    flex: 1;
+    color: #555;
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.join-community-btn {
+    background-color: #FDB714;
+    color: #FFF;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+    white-space: nowrap;
+}
+
+.join-community-btn:hover {
+    background-color: #e5a500;
+}
+
+.app-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.app-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.app-icon:hover {
+    transform: scale(1.1);
+}
+
+.get-in-touch-link {
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.get-in-touch-link:hover {
+    text-decoration: underline;
+}
+
+/* Grid Section */
+.parenting-grid-section {
+    padding: 20px 0 80px;
+}
+
+.influencers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px 30px;
+    justify-content: center;
+}
+
+.influencer-card {
+    background: transparent;
+    text-align: center;
+    padding: 0;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.influencer-card:hover {
+    transform: translateY(-5px);
+}
+
+
+.influencer-image-wrapper {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto 15px;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: transparent;
+}
+
+.influencer-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.influencer-name {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    color: #0b1c33;
+    font-weight: 700;
+}
+
+.influencer-category {
+    color: #4b5563;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.influencer-followers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #000;
+    font-size: 0.95rem;
+}
+
+.instagram-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E1306C;
+}
+
+.view-insights-button {
+    background-color: #FDB714;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    min-width: 180px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.view-insights-button:hover {
+    background-color: #e5a500;
+    transform: scale(1.02);
+}
+
+/* Table Section */
+.parenting-table-section {
+    padding: 60px 0 80px;
+    background-color: #fff;
+}
+
+.table-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    font-weight: 400;
+    color: #333;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    background: white;
+}
+
+.influencers-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+.influencers-table thead tr {
+    background-color: #000;
+    color: white;
+}
+
+.influencers-table th,
+.influencers-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+/* Customizing header colors */
+.influencers-table thead th:nth-child(2),
+.influencers-table thead th:nth-child(4),
+.influencers-table thead th:nth-child(6) {
+    background-color: #FDB714;
+    color: black;
+}
+
+.table-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 600;
+}
+
+.table-image-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.table-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contact-btn {
+    background-color: #FDB714;
+    color: black;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 3px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.contact-btn:hover {
+    background-color: #e5a500;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+    }
+
+    .cta-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cta-text {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .cta-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .get-in-touch-link {
+        margin-left: 0;
+    }
+}

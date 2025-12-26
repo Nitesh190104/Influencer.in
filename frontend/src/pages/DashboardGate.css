@@ -1,0 +1,123 @@
+.dashboard-gate-page {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 60px 0;
+}
+
+.gate-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.gate-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.gate-subtitle {
+    font-size: 1.25rem;
+    color: #666;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.options-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.option-card {
+    background: #fff;
+    padding: 50px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: #ffc107;
+}
+
+.card-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.option-card h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.option-card p {
+    color: #777;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.gate-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.login-btn {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.signup-btn {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.option-card:hover .login-btn {
+    background-color: #e0e0e0;
+}
+
+.option-card:hover .signup-btn {
+    background-color: #e5af06;
+}
+
+.gate-footer {
+    color: #888;
+}
+
+.gate-footer a {
+    color: #333;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .options-container {
+        grid-template-columns: 1fr;
+    }
+
+    .gate-title {
+        font-size: 2.2rem;
+    }
+}
