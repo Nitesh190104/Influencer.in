@@ -29,12 +29,6 @@ const Navbar = () => {
     'Fair Price Index'
   ];
 
-  const ourWorkLinks = [
-    'Case Studies',
-    'Blog',
-    'Guides'
-  ];
-
   const contactLinks = [
     'Meet The Team'
   ];
@@ -96,21 +90,6 @@ const Navbar = () => {
                 <div className="dropdown-menu">
                   <Link to="/dashboard-gate" className="dropdown-item">Influencer Dashboard</Link>
                   <Link to="/fair-price-index" className="dropdown-item">Fair Price Index</Link>
-                </div>
-              )}
-            </div>
-
-            <div
-              className="nav-item dropdown"
-              onMouseEnter={() => setActiveDropdown('our-work')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <span>Our Work ▼</span>
-              {activeDropdown === 'our-work' && (
-                <div className="dropdown-menu">
-                  {ourWorkLinks.map((link, index) => (
-                    <a key={index} href="#" className="dropdown-item">{link}</a>
-                  ))}
                 </div>
               )}
             </div>
