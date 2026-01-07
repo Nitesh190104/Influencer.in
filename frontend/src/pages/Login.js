@@ -68,7 +68,7 @@ const Login = () => {
     <div className="auth-container">
       <div className="auth-left auth-left-bg-mode">
         <img
-          src="https://influencer-media.s3.ap-south-1.amazonaws.com/signup_web_new_1.jpeg"
+          src="/auth-image.png"
           alt="Influencer Platform"
           className="auth-left-image"
         />
