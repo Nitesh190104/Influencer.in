@@ -74,17 +74,20 @@ const Signup = () => {
       });
 
       if (response.data.success) {
-        setMessage('OTP sent to your email!');
+        setMessage('Account created successfully!');
         setMessageType('success');
 
-        // Redirect to OTP verification page with email
+        // Store token and user data
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+
+        // Redirect to appropriate dashboard based on user type
         setTimeout(() => {
-          navigate('/verify-otp', {
-            state: {
-              email: formData.email,
-              userType: userType
-            }
-          });
+          if (userType === 'brand') {
+            navigate('/brand-dashboard');
+          } else {
+            navigate('/influencer-dashboard');
+          }
         }, 1500);
       }
     } catch (error) {

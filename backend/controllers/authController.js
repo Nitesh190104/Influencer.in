@@ -89,34 +89,40 @@ exports.signup = async (req, res) => {
             }
         }
 
-        // Create new user (not verified yet)
+        // Create new user (auto-verified to bypass email issues on Render)
         const user = new User({
             name,
             email,
             phone,
             password,
             userType,
-            isVerified: false
+            isVerified: true // Auto-verify since email is blocked on Render free tier
         });
 
         await user.save();
 
-        // Generate and save OTP
-        const otp = generateOTP();
-        const otpDoc = new OTP({
-            email,
-            otp
-        });
-
-        await otpDoc.save();
-
-        // Send OTP email
-        await sendOTPEmail(email, otp, name);
+        // Generate JWT token immediately
+        const token = jwt.sign(
+            {
+                userId: user._id,
+                email: user.email,
+                userType: user.userType
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: '7d' }
+        );
 
         res.status(200).json({
             success: true,
-            message: 'OTP sent to your email. Please verify to complete registration.',
-            email
+            message: 'Account created successfully!',
+            token,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                phone: user.phone,
+                userType: user.userType
+            }
         });
 
     } catch (error) {
