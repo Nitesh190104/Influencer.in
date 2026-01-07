@@ -35,7 +35,7 @@ const SocialConnect = ({ onAccountConnected, hasConnectedAccounts = false }) => 
     try {
       const token = localStorage.getItem('token');
       // Use 'instagram' as a placeholder - the SDK will show platform selection
-      const response = await fetch(`http://localhost:5000/api/social-accounts/oauth/instagram/url`, {
+      const response = await fetch(`/api/social-accounts/oauth/instagram/url`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -118,7 +118,7 @@ const SocialConnect = ({ onAccountConnected, hasConnectedAccounts = false }) => 
       const token = localStorage.getItem('token');
       console.log('[Phyllo Success] Sending request to backend callback...');
 
-      const response = await fetch('http://localhost:5000/api/social-accounts/oauth/phyllo/callback', {
+      const response = await fetch('/api/social-accounts/oauth/phyllo/callback', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

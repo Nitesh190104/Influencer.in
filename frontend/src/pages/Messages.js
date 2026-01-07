@@ -43,7 +43,7 @@ const Messages = () => {
     const fetchConversations = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/chat/conversations', {
+            const response = await axios.get('/api/chat/conversations', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -60,7 +60,7 @@ const Messages = () => {
     const fetchUnreadCount = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/chat/unread-count', {
+            const response = await axios.get('/api/chat/unread-count', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -75,7 +75,7 @@ const Messages = () => {
     const openConversationWithUser = async (userId) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:5000/api/chat/conversations/${userId}`, {
+            const response = await axios.get(`/api/chat/conversations/${userId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 

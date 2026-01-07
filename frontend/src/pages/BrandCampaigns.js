@@ -35,7 +35,7 @@ const BrandCampaigns = () => {
   const fetchCampaigns = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/campaigns/brand/my-campaigns', {
+      const response = await axios.get('/api/campaigns/brand/my-campaigns', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -104,11 +104,11 @@ const BrandCampaigns = () => {
 
       let response;
       if (editingCampaign) {
-        response = await axios.put(`http://localhost:5000/api/campaigns/${editingCampaign._id}`, payload, {
+        response = await axios.put(`/api/campaigns/${editingCampaign._id}`, payload, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
-        response = await axios.post('http://localhost:5000/api/campaigns', payload, {
+        response = await axios.post('/api/campaigns', payload, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
@@ -162,7 +162,7 @@ const BrandCampaigns = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/campaigns/${id}`, {
+      await axios.delete(`/api/campaigns/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchCampaigns();

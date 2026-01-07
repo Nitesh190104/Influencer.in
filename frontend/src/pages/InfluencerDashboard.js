@@ -48,7 +48,7 @@ const InfluencerDashboard = () => {
     const fetchSocialAccounts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/social-accounts', {
+            const response = await axios.get('/api/social-accounts', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -76,7 +76,7 @@ const InfluencerDashboard = () => {
         setSyncing(true);
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5000/api/social-accounts/sync', {}, {
+            await axios.post('/api/social-accounts/sync', {}, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -98,7 +98,7 @@ const InfluencerDashboard = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.delete(`http://localhost:5000/api/social-accounts/disconnect/${platform}`, {
+            const response = await axios.delete(`/api/social-accounts/disconnect/${platform}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -154,7 +154,7 @@ const InfluencerDashboard = () => {
     const fetchUnreadCount = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/chat/unread-count', {
+            const response = await axios.get('/api/chat/unread-count', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 

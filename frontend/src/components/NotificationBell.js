@@ -38,7 +38,7 @@ const NotificationBell = () => {
     const fetchNotifications = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/notifications', {
+            const response = await axios.get('/api/notifications', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -54,7 +54,7 @@ const NotificationBell = () => {
     const fetchUnreadCount = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/notifications/unread-count', {
+            const response = await axios.get('/api/notifications/unread-count', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -69,7 +69,7 @@ const NotificationBell = () => {
     const handleAccept = async (notificationId) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://localhost:5000/api/follow/requests/${notificationId}/accept`, {}, {
+            await axios.post(`/api/follow/requests/${notificationId}/accept`, {}, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -84,7 +84,7 @@ const NotificationBell = () => {
     const handleReject = async (notificationId) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://localhost:5000/api/follow/requests/${notificationId}/reject`, {}, {
+            await axios.post(`/api/follow/requests/${notificationId}/reject`, {}, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 

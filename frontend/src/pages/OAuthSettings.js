@@ -28,7 +28,7 @@ const OAuthSettings = () => {
   const fetchConfigs = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/oauth-config', {
+      const response = await axios.get('/api/oauth-config', {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -68,7 +68,7 @@ const OAuthSettings = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `http://localhost:5000/api/oauth-config/${editingPlatform}`,
+        `/api/oauth-config/${editingPlatform}`,
         {
           platform: editingPlatform,
           ...formData
@@ -104,7 +104,7 @@ const OAuthSettings = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://localhost:5000/api/oauth-config/${platform}/test`,
+        `/api/oauth-config/${platform}/test`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }

@@ -19,7 +19,7 @@ const ApplicantsModal = ({ campaign, onClose, onUpdate }) => {
             console.log('Fetching applicants for campaign:', campaign._id);
             
             const response = await axios.get(
-                `http://localhost:5000/api/campaigns/${campaign._id}/applicants`,
+                `/api/campaigns/${campaign._id}/applicants`,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
@@ -52,7 +52,7 @@ const ApplicantsModal = ({ campaign, onClose, onUpdate }) => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.put(
-                `http://localhost:5000/api/campaigns/${campaign._id}/applicants/${applicantId}`,
+                `/api/campaigns/${campaign._id}/applicants/${applicantId}`,
                 { status },
                 {
                     headers: { Authorization: `Bearer ${token}` }

@@ -23,7 +23,7 @@ const FollowersModal = ({ isOpen, onClose, initialTab = 'followers' }) => {
         try {
             setLoading(true);
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/follow/followers/list', {
+            const response = await axios.get('/api/follow/followers/list', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -42,7 +42,7 @@ const FollowersModal = ({ isOpen, onClose, initialTab = 'followers' }) => {
         try {
             setLoading(true);
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/follow/following/list', {
+            const response = await axios.get('/api/follow/following/list', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -63,7 +63,7 @@ const FollowersModal = ({ isOpen, onClose, initialTab = 'followers' }) => {
             const mutualSet = new Set();
 
             for (const user of users) {
-                const response = await axios.get(`http://localhost:5000/api/follow/status/${user._id}`, {
+                const response = await axios.get(`/api/follow/status/${user._id}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
@@ -85,7 +85,7 @@ const FollowersModal = ({ isOpen, onClose, initialTab = 'followers' }) => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/follow/follower/${userId}`, {
+            await axios.delete(`/api/follow/follower/${userId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -104,7 +104,7 @@ const FollowersModal = ({ isOpen, onClose, initialTab = 'followers' }) => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/follow/${userId}`, {
+            await axios.delete(`/api/follow/${userId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 

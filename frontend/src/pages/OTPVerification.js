@@ -73,7 +73,7 @@ const OTPVerification = () => {
             setLoading(true);
             setMessage('');
 
-            const response = await axios.post('http://localhost:5000/api/auth/verify-otp', {
+            const response = await axios.post('/api/auth/verify-otp', {
                 email,
                 otp: otpString
             });
@@ -116,7 +116,7 @@ const OTPVerification = () => {
             setLoading(true);
             setMessage('');
 
-            const response = await axios.post('http://localhost:5000/api/auth/resend-otp', {
+            const response = await axios.post('/api/auth/resend-otp', {
                 email
             });
 

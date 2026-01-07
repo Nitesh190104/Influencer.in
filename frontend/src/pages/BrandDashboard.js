@@ -54,7 +54,7 @@ const BrandDashboard = () => {
         try {
             const token = localStorage.getItem('token');
             console.log('Fetching brand stats...');
-            const response = await axios.get('http://localhost:5000/api/stats/brand', {
+            const response = await axios.get('/api/stats/brand', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -73,7 +73,7 @@ const BrandDashboard = () => {
     const fetchUnreadCount = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/chat/unread-count', {
+            const response = await axios.get('/api/chat/unread-count', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 

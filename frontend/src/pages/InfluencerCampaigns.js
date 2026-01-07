@@ -19,7 +19,7 @@ const InfluencerCampaigns = () => {
   const fetchCampaigns = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/campaigns', {
+      const response = await axios.get('/api/campaigns', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -36,7 +36,7 @@ const InfluencerCampaigns = () => {
   const fetchTotalFollowers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/social-accounts', {
+      const response = await axios.get('/api/social-accounts', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -68,7 +68,7 @@ const InfluencerCampaigns = () => {
       }
 
       const response = await axios.post(
-        `http://localhost:5000/api/campaigns/${campaign._id}/apply`,
+        `/api/campaigns/${campaign._id}/apply`,
         { followers: totalFollowers },
         { headers: { Authorization: `Bearer ${token}` } }
       );

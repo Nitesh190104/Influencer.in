@@ -51,7 +51,7 @@ const OAuthCallback = () => {
       try {
         // Exchange code for access token via backend
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5000/api/social-accounts/oauth/${platform}/callback`, {
+        const response = await fetch(`/api/social-accounts/oauth/${platform}/callback`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

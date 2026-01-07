@@ -76,7 +76,7 @@ const BrandSettings = () => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.put(
-                'http://localhost:5000/api/auth/update-profile',
+                '/api/auth/update-profile',
                 formData,
                 {
                     headers: { Authorization: `Bearer ${token}` }

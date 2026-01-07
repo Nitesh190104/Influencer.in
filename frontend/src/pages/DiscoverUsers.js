@@ -36,7 +36,7 @@ const DiscoverUsers = () => {
                 params.search = search;
             }
 
-            const response = await axios.get('http://localhost:5000/api/users/discover', {
+            const response = await axios.get('/api/users/discover', {
                 headers: { 'Authorization': `Bearer ${token}` },
                 params
             });
@@ -55,7 +55,7 @@ const DiscoverUsers = () => {
     const handleFollow = async (userId) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://localhost:5000/api/follow/${userId}`, {}, {
+            await axios.post(`/api/follow/${userId}`, {}, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -74,7 +74,7 @@ const DiscoverUsers = () => {
     const handleUnfollow = async (userId) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/follow/${userId}`, {
+            await axios.delete(`/api/follow/${userId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 

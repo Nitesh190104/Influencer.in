@@ -30,7 +30,7 @@ const ChatWindow = ({ conversation, onMessageSent }) => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.get(
-                `http://localhost:5000/api/chat/messages/${conversation._id}`,
+                `/api/chat/messages/${conversation._id}`,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
 
@@ -48,7 +48,7 @@ const ChatWindow = ({ conversation, onMessageSent }) => {
         try {
             const token = localStorage.getItem('token');
             await axios.patch(
-                `http://localhost:5000/api/chat/conversations/${conversation._id}/read`,
+                `/api/chat/conversations/${conversation._id}/read`,
                 {},
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
@@ -69,7 +69,7 @@ const ChatWindow = ({ conversation, onMessageSent }) => {
                 formData.append('receiverId', conversation.participant._id);
                 formData.append('content', content);
 
-                await axios.post('http://localhost:5000/api/chat/messages/file', formData, {
+                await axios.post('/api/chat/messages/file', formData, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'multipart/form-data'
@@ -77,7 +77,7 @@ const ChatWindow = ({ conversation, onMessageSent }) => {
                 });
             } else {
                 // Send text message
-                await axios.post('http://localhost:5000/api/chat/messages', {
+                await axios.post('/api/chat/messages', {
                     conversationId: conversation._id,
                     receiverId: conversation.participant._id,
                     content
@@ -99,7 +99,7 @@ const ChatWindow = ({ conversation, onMessageSent }) => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/chat/messages/${messageId}`, {
+            await axios.delete(`/api/chat/messages/${messageId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -113,7 +113,7 @@ const ChatWindow = ({ conversation, onMessageSent }) => {
         try {
             const token = localStorage.getItem('token');
             await axios.post(
-                `http://localhost:5000/api/chat/messages/${messageId}/reaction`,
+                `/api/chat/messages/${messageId}/reaction`,
                 { emoji },
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
@@ -171,7 +171,7 @@ const ChatWindow = ({ conversation, onMessageSent }) => {
                             <div className="message-bubble">
                                 {message.type === 'image' && (
                                     <img
-                                        src={`http://localhost:5000${message.fileUrl}`}
+                                        src={`${message.fileUrl}`}
                                         alt="Shared content"
                                         className="message-image"
                                     />
@@ -181,7 +181,7 @@ const ChatWindow = ({ conversation, onMessageSent }) => {
                                     <div className="message-file">
                                         <span className="file-icon">📎</span>
                                         <a
-                                            href={`http://localhost:5000${message.fileUrl}`}
+                                            href={`${message.fileUrl}`}
                                             download={message.fileName}
                                             rel="noopener noreferrer"
                                         >
