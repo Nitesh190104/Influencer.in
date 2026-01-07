@@ -106,15 +106,15 @@ const InfluencerDashboard = () => {
 
             if (response.data.success) {
                 // Immediately remove the account from state
-                setSocialAccounts(prevAccounts => 
+                setSocialAccounts(prevAccounts =>
                     prevAccounts.filter(account => account.platform !== platform)
                 );
-                
+
                 // Recalculate total followers
                 const updatedAccounts = socialAccounts.filter(account => account.platform !== platform);
                 const total = updatedAccounts.reduce((sum, account) => sum + (account.followers || 0), 0);
                 setTotalFollowers(total);
-                
+
                 alert(`${platform.charAt(0).toUpperCase() + platform.slice(1)} account disconnected successfully!`);
             }
         } catch (error) {
@@ -186,7 +186,9 @@ const InfluencerDashboard = () => {
             {/* Sidebar */}
             <div className="dashboard-sidebar">
                 <div className="sidebar-header">
-                    <img src="https://www.influencer.in/wp-content/themes/influencer-2022/images/logo.png" alt="Influencer" className="logo-image" />
+                    <a href="/" style={{ display: 'block' }}>
+                        <img src="https://www.influencer.in/wp-content/themes/influencer-2022/images/logo.png" alt="Influencer" className="logo-image" />
+                    </a>
                 </div>
 
                 <nav className="sidebar-nav">
@@ -229,8 +231,8 @@ const InfluencerDashboard = () => {
                     </div>
                     <div className="user-profile">
                         <NotificationBell />
-                        <div 
-                            className="user-avatar influencer-avatar" 
+                        <div
+                            className="user-avatar influencer-avatar"
                             style={{ backgroundColor: user?.avatarColor || '#667eea' }}
                         >
                             {user?.avatarIcon || user?.name?.charAt(0).toUpperCase()}

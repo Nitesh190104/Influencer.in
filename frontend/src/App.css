@@ -10,18 +10,33 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 .App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .container {
+    padding: 0;
+  }
+
+  body {
+    font-size: 14px;
+    margin: 0;
+  }
 }
 
 button {
@@ -33,4 +48,10 @@ button {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+/* Prevent horizontal scroll on mobile */
+main {
+  width: 100%;
+  overflow-x: hidden;
 }
