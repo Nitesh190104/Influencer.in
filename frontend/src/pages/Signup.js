@@ -100,7 +100,7 @@ const Signup = () => {
   const handleGoogleSignup = async () => {
     try {
       const response = await axios.get(`/api/auth/google/url?userType=${userType}`);
-      
+
       if (response.data.success && response.data.authUrl) {
         // Redirect to Google OAuth
         window.location.href = response.data.authUrl;
@@ -118,22 +118,16 @@ const Signup = () => {
   return (
     <div className="auth-container">
       <div className="auth-left auth-left-bg-mode">
-        <img 
-          src="https://influencer-media.s3.ap-south-1.amazonaws.com/signup_web_new_1.jpeg" 
-          alt="Influencer Platform" 
+        <img
+          src="https://influencer-media.s3.ap-south-1.amazonaws.com/signup_web_new_1.jpeg"
+          alt="Influencer Platform"
           className="auth-left-image"
-          onError={(e) => {
-            console.error('Image failed to load from S3');
-            // Try direct URL without crossOrigin
-            e.target.onerror = null; // Prevent infinite loop
-            e.target.src = 'https://influencer-media.s3.ap-south-1.amazonaws.com/signup_web_new_1.jpeg';
-          }}
         />
       </div>
 
       <div className="auth-right">
         <div className="auth-form-container">
-          <button 
+          <button
             className="back-to-home-btn"
             onClick={() => navigate('/')}
             title="Back to Home"
@@ -141,7 +135,7 @@ const Signup = () => {
             <span className="back-arrow">←</span>
             <span>Back to Home</span>
           </button>
-          
+
           <div className="logo-header">
             <img src="https://www.influencer.in/wp-content/themes/influencer-2022/images/logo.png" alt="Influencer" className="logo-image-auth" />
           </div>
