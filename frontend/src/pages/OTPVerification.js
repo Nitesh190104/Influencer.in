@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import api from '../config/api';
 import './OTPVerification.css';
 
 const OTPVerification = () => {
@@ -73,7 +73,7 @@ const OTPVerification = () => {
             setLoading(true);
             setMessage('');
 
-            const response = await axios.post('/api/auth/verify-otp', {
+            const response = await api.post('/api/auth/verify-otp', {
                 email,
                 otp: otpString
             });
@@ -116,7 +116,7 @@ const OTPVerification = () => {
             setLoading(true);
             setMessage('');
 
-            const response = await axios.post('/api/auth/resend-otp', {
+            const response = await api.post('/api/auth/resend-otp', {
                 email
             });
 

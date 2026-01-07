@@ -172,16 +172,19 @@ function App() {
 
           <Route path="/signup" element={
             <>
+              <Navbar />
               <Signup />
             </>
           } />
           <Route path="/login" element={
             <>
+              <Navbar />
               <Login />
             </>
           } />
           <Route path="/verify-otp" element={
             <>
+              <Navbar />
               <OTPVerification />
             </>
           } />

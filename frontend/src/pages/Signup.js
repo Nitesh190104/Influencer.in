@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../config/api';
 import './Signup.css';
 
 const Signup = () => {
@@ -65,7 +65,7 @@ const Signup = () => {
     try {
       setLoading(true);
 
-      const response = await axios.post('/api/auth/signup', {
+      const response = await api.post('/api/auth/signup', {
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
@@ -102,7 +102,7 @@ const Signup = () => {
 
   const handleGoogleSignup = async () => {
     try {
-      const response = await axios.get(`/api/auth/google/url?userType=${userType}`);
+      const response = await api.get(`/api/auth/google/url?userType=${userType}`);
 
       if (response.data.success && response.data.authUrl) {
         // Redirect to Google OAuth

@@ -9,11 +9,28 @@ dotenv.config();
 const app = express();
 
 // Middleware
-// Temporary permissive CORS to unblock deployment
-app.use(cors());
-// app.use(cors({
-//   origin: function (origin, callback) { ... }
-// }));
+// CORS Configuration for cross-origin requests
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests from Vercel frontend, localhost, and no origin (mobile apps)
+    const allowedOrigins = [
+      'https://influencer-in.vercel.app',
+      'https://www.influencer.in',
+      'http://localhost:3000',
+      'http://localhost:5000'
+    ];
+
+    // Allow requests with no origin (mobile apps, Postman, etc.)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Still permissive for now
+    }
+  },
+  credentials: true, // Allow cookies and authentication headers
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));

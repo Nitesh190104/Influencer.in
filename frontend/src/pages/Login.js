@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../config/api';
 import './Login.css';
 
 const Login = () => {
@@ -35,7 +35,7 @@ const Login = () => {
       setLoading(true);
       setMessage('');
 
-      const response = await axios.post('/api/auth/login', formData);
+      const response = await api.post('/api/auth/login', formData);
 
       if (response.data.success) {
         // Store token and user info
