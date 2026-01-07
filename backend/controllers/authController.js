@@ -111,7 +111,8 @@ exports.signup = async (req, res) => {
         console.error('Signup error:', error);
         res.status(500).json({
             success: false,
-            message: 'Server error. Please try again later.'
+            message: error.message || 'Server error. Please try again later.',
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
         });
     }
 };
