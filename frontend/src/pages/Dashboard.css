@@ -1,3 +1,172 @@
+/* Hero Carousel Styles */
+.hero-carousel-section {
+  position: relative;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #fff;
+  transition: background 0.5s ease;
+  padding: 60px 0;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.carousel-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  width: 80px;
+  z-index: 10;
+  position: absolute;
+  left: 20px;
+}
+
+.social-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.social-dot {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.social-dot:hover {
+  opacity: 1;
+}
+
+.carousel-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-item.active {
+  opacity: 1;
+}
+
+.nav-number {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #FDB714;
+}
+
+.nav-line {
+  width: 35px;
+  height: 2px;
+  background: #FDB714;
+  position: absolute;
+  left: 35px;
+  display: none;
+}
+
+.nav-item.active .nav-line {
+  display: block;
+}
+
+.carousel-middle {
+  flex: 0 0 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 120px;
+  /* Space for carousel-left */
+}
+
+.image-frame {
+  background: #fff;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  max-width: 480px;
+  z-index: 5;
+  transition: all 0.5s ease;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+}
+
+.carousel-right {
+  flex: 1;
+  padding-left: 80px;
+  z-index: 5;
+}
+
+.banner-title {
+  font-size: 4rem;
+  line-height: 1.1;
+  font-weight: 900;
+  margin-bottom: 50px;
+  max-width: 650px;
+  letter-spacing: -2px;
+}
+
+.banner-cta-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  padding: 16px 50px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+.enquire-now-tag {
+  position: absolute;
+  right: 0;
+  top: 150px;
+  background: #FDB714;
+  color: #000;
+  padding: 15px 10px;
+  font-weight: 900;
+  font-size: 0.9rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Dashboard Page General Styles */
 .dashboard-page {
   padding: 0;
   min-height: 100vh;
@@ -5,21 +174,20 @@
 }
 
 .influencer-discovery-section {
-  padding: 80px 20px;
-  background-color: #fff;
+  padding: 120px 20px;
 }
 
 .influencer-discovery-section .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
 .discovery-title {
   text-align: center;
-  font-size: 2.8rem;
-  font-weight: 800;
-  margin-bottom: 50px;
-  color: #333;
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 70px;
+  color: #000;
 }
 
 .category-tabs-row {
@@ -27,60 +195,54 @@
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .category-tab-btn {
-  padding: 10px 25px;
-  background: #f8f8f8;
-  border: 1px solid #eee;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #666;
+  padding: 14px 32px;
+  background: #fcfcfc;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #444;
   cursor: pointer;
   transition: all 0.3s ease;
-}
-
-.category-tab-btn:hover {
-  background: #eee;
 }
 
 .category-tab-btn.active {
   background: #000;
   color: #fff;
   border-color: #000;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .influencers-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  margin-bottom: 50px;
+  gap: 40px;
+  margin-bottom: 80px;
 }
-
 
 .influencer-card {
   background: #fff;
-  border-radius: 15px;
+  border-radius: 25px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+  transition: all 0.5s ease;
   cursor: pointer;
-  border: 1px solid #f0f0f0;
+  border: 1px solid #eee;
 }
 
 .influencer-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transform: translateY(-15px);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
 }
 
 .influencer-image-wrapper {
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  background-color: #f9f9f9;
 }
 
 .influencer-img {
@@ -89,67 +251,51 @@
   object-fit: cover;
 }
 
-.influencer-initials {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  font-weight: 800;
-  color: #fff;
-}
-
 .influencer-info {
-  padding: 20px;
+  padding: 30px;
 }
 
 .inf-name {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-  color: #333;
+  font-size: 1.65rem;
+  font-weight: 800;
+  margin-bottom: 10px;
 }
 
 .inf-category {
-  font-size: 0.9rem;
-  color: #888;
-  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: #aaa;
+  margin-bottom: 25px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .inf-stats {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.insta-icon {
-  color: #E1306C;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
 .followers-count {
-  font-weight: 600;
-  color: #444;
+  font-weight: 800;
+  color: #222;
+  font-size: 1.2rem;
 }
 
 .view-insights-btn {
   width: 100%;
-  padding: 12px;
+  padding: 16px;
   background: #fff;
   border: 2px solid #FDB714;
-  color: #333;
-  border-radius: 30px;
-  font-weight: 700;
+  color: #000;
+  border-radius: 50px;
+  font-weight: 900;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .view-insights-btn:hover {
   background: #FDB714;
-  color: #000;
 }
 
 .discovery-footer {
@@ -157,27 +303,46 @@
 }
 
 .view-all-btn {
-  padding: 15px 40px;
+  padding: 20px 60px;
   background: #000;
   color: #fff;
-  border: none;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 1.1rem;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.3rem;
   cursor: pointer;
-  transition: transform 0.3s ease;
 }
 
-.view-all-btn:hover {
-  transform: scale(1.05);
+@media (max-width: 1100px) {
+  .carousel-container {
+    padding-left: 100px;
+  }
 }
 
 @media (max-width: 768px) {
-  .discovery-title {
-    font-size: 2rem;
+  .carousel-container {
+    flex-direction: column;
+    padding-left: 0;
   }
 
-  .influencers-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  .carousel-left {
+    position: static;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .carousel-middle {
+    margin-left: 0;
+    flex: 1;
+  }
+
+  .carousel-right {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .banner-title {
+    font-size: 2.5rem;
   }
 }

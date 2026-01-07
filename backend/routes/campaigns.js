@@ -1,39 +1,29 @@
 const express = require('express');
 const router = express.Router();
-const Campaign = require('../models/Campaign');
+const authMiddleware = require('../middleware/authMiddleware');
+const campaignController = require('../controllers/campaignController');
 
-// Get all campaigns
-router.get('/', async (req, res) => {
-  try {
-    const campaigns = await Campaign.find().sort({ createdAt: -1 });
-    res.json(campaigns);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// Public routes (no auth required)
+router.get('/public', campaignController.getAllCampaigns);
 
-// Get single campaign
-router.get('/:id', async (req, res) => {
-  try {
-    const campaign = await Campaign.findById(req.params.id);
-    if (!campaign) {
-      return res.status(404).json({ message: 'Campaign not found' });
-    }
-    res.json(campaign);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// Protected routes (require authentication)
+router.use(authMiddleware);
 
-// Create campaign
-router.post('/', async (req, res) => {
-  const campaign = new Campaign(req.body);
-  try {
-    const newCampaign = await campaign.save();
-    res.status(201).json(newCampaign);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
+// Get campaigns
+router.get('/', campaignController.getAllCampaigns);
+router.get('/brand/my-campaigns', campaignController.getBrandCampaigns);
+router.get('/:id', campaignController.getCampaign);
+
+// Campaign CRUD (brands only)
+router.post('/', campaignController.createCampaign);
+router.put('/:id', campaignController.updateCampaign);
+router.delete('/:id', campaignController.deleteCampaign);
+
+// Apply to campaign (influencers only)
+router.post('/:id/apply', campaignController.applyToCampaign);
+// Get campaign applicants (brands only)
+router.get('/:campaignId/applicants', campaignController.getCampaignApplicants);
+// Manage applicants (brands only)
+router.put('/:campaignId/applicants/:applicantId', campaignController.updateApplicantStatus);
 
 module.exports = router;

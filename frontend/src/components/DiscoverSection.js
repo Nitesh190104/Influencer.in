@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './DiscoverSection.css';
 
 const DiscoverSection = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('Discover');
 
   const tabs = [
@@ -14,19 +16,19 @@ const DiscoverSection = () => {
   const tabContent = {
     'Discover': {
       description: "Find creators based on audience demographics, interests, location and genre.",
-      signupText: "Discover upcoming creators."
+      image: "https://www.influencer.in/wp-content/uploads/2024/10/Discover.webp"
     },
     'Compare Prices': {
-      description: "Compare influencer pricing and performance metrics to ensure competitive rates.",
-      signupText: "Get the best value for your budget."
+      description: "Check if you are over-paying creators and ensure you get a great deal.",
+      image: "https://www.influencer.in/wp-content/uploads/2024/10/roi-3.jpg"
     },
     'Track Competitors': {
-      description: "Monitor competitor campaigns and influencer partnerships in real-time.",
-      signupText: "Stay ahead of the competition."
+      description: "Analyse which creators and platforms are working for your competitors",
+      image: "https://www.influencer.in/wp-content/uploads/2024/10/competitor-report.webp"
     },
     'Measure': {
-      description: "Measure campaign ROI with deep analytics and automated reporting.",
-      signupText: "Data-driven campaign optimization."
+      description: "Analyse each campaign at a creator and platform level.",
+      image: "https://www.influencer.in/wp-content/uploads/2024/10/reporting.webp"
     }
   };
 
@@ -34,7 +36,7 @@ const DiscoverSection = () => {
     <section className="discover-section">
       <div className="container">
         <h2 className="discover-main-heading">
-          An Influencer platform to discover and get the <span className="highlight">Best ROI</span> for your brand
+          An Influencer platform to discover and get the <br /> <span className="highlight">Best ROI</span> for your brand
         </h2>
 
         <div className="discover-grid">
@@ -52,23 +54,24 @@ const DiscoverSection = () => {
             ))}
           </div>
 
-          {/* Mockup Area */}
-          <div className="discover-mockup-area">
-            <img
-              src="https://www.influencer.in/wp-content/uploads/2024/10/Discover.webp"
-              alt="Platform Mockup"
-              className="discover-mockup-img"
-            />
-          </div>
+          {/* Content Wrapper (Image + Text) */}
+          <div className="discover-content-wrapper">
+            <div className="discover-mockup-area">
+              <img
+                src={tabContent[activeTab].image}
+                alt={`${activeTab} Mockup`}
+                className="discover-mockup-img"
+              />
+            </div>
 
-          {/* CTA Sidebar */}
-          <div className="discover-cta">
-            <p className="discover-desc">
-              {tabContent[activeTab].description}
-            </p>
-            <div className="discover-signup-block">
-              <h3 className="discover-signup-title">{tabContent[activeTab].signupText}</h3>
-              <button className="discover-signup-btn">SIGNUP FOR FREE</button>
+            <div className="discover-cta">
+              <p className="discover-desc">
+                {tabContent[activeTab].description}
+              </p>
+              <div className="discover-signup-block">
+                <h3 className="discover-signup-title">{tabContent[activeTab].signupText}</h3>
+                <button onClick={() => navigate('/signup')} className="discover-signup-btn">SIGNUP FOR FREE</button>
+              </div>
             </div>
           </div>
         </div>

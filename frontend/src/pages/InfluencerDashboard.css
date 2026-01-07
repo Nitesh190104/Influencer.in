@@ -1,0 +1,160 @@
+/* Influencer-specific styles */
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.logo-image {
+    max-width: 180px;
+    height: auto;
+    max-height: 50px;
+    object-fit: contain;
+}
+
+.influencer-avatar {
+    background: #FEBD1C !important;
+    color: #212121 !important;
+}
+
+.stat-card.influencer-card:hover {
+    border-left: 4px solid #FEBD1C;
+}
+
+.welcome-section.influencer-welcome h2 {
+    color: #212121;
+}
+
+.cta-button.influencer-cta {
+    background: #FEBD1C;
+    color: #212121;
+}
+
+.cta-button.influencer-cta:hover {
+    background: #E5A500;
+    box-shadow: 0 4px 12px rgba(254, 189, 28, 0.4);
+}
+
+/* Enhanced Account Card Styles */
+.account-card {
+    position: relative;
+    padding: 24px;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.verified-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    margin-left: 6px;
+    font-size: 12px;
+}
+
+.account-fullname {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.account-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 11px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.recent-activity {
+    margin-top: 16px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.activity-title {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.activity-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.activity-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.activity-icon {
+    font-size: 20px;
+}
+
+.activity-value {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.activity-label {
+    font-size: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.last-synced {
+    margin-top: 16px;
+    font-size: 11px;
+    opacity: 0.7;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .account-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+    }
+}
+
+/* Import Brand Dashboard styles */
+@import './BrandDashboard.css';

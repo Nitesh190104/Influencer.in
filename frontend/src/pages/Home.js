@@ -4,6 +4,7 @@ import DiscoverSection from '../components/DiscoverSection';
 import BrandsSection from '../components/BrandsSection';
 import ApproachSection from '../components/ApproachSection';
 import InfluencersSection from '../components/InfluencersSection';
+import ExpertiseSection from '../components/ExpertiseSection';
 import ContactSection from '../components/ContactSection';
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
         <DiscoverSection />
       </section>
       <BrandsSection />
+      <ExpertiseSection />
       <section className="conversion-campaign">
         <ApproachSection />
       </section>

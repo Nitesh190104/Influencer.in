@@ -8,8 +8,14 @@ import InfluencerDetails from './pages/InfluencerDetails';
 import ComedyInfluencers from './pages/ComedyInfluencers';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import OTPVerification from './pages/OTPVerification';
+import GoogleAuthSuccess from './pages/GoogleAuthSuccess';
+import BrandDashboard from './pages/BrandDashboard';
+import InfluencerDashboard from './pages/InfluencerDashboard';
+import BrandCampaigns from './pages/BrandCampaigns';
+import InfluencerCampaigns from './pages/InfluencerCampaigns';
 import Team from './pages/Team';
-import Contact from './pages/Contact';
+
 import GamingInfluencers from './pages/GamingInfluencers';
 import TravelInfluencers from './pages/TravelInfluencers';
 import FinanceInfluencers from './pages/FinanceInfluencers';
@@ -22,6 +28,13 @@ import TechInfluencers from './pages/TechInfluencers';
 import CreatorsPage from './pages/CreatorsPage';
 import LiveCampaigns from './pages/LiveCampaigns';
 import DashboardGate from './pages/DashboardGate';
+import OAuthCallback from './pages/OAuthCallback';
+import OAuthSettings from './pages/OAuthSettings';
+import InfluencerSettings from './pages/InfluencerSettings';
+import BrandSettings from './pages/BrandSettings';
+import DiscoverUsers from './pages/DiscoverUsers';
+import Messages from './pages/Messages';
+import FairPriceIndex from './pages/FairPriceIndex';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -156,13 +169,7 @@ function App() {
               <Footer />
             </>
           } />
-          <Route path="/contact" element={
-            <>
-              <Navbar />
-              <Contact />
-              <Footer />
-            </>
-          } />
+
           <Route path="/signup" element={
             <>
               <Signup />
@@ -173,6 +180,70 @@ function App() {
               <Login />
             </>
           } />
+          <Route path="/verify-otp" element={
+            <>
+              <OTPVerification />
+            </>
+          } />
+          <Route path="/auth/google/success" element={
+            <>
+              <GoogleAuthSuccess />
+            </>
+          } />
+          <Route path="/brand-dashboard" element={
+            <>
+              <BrandDashboard />
+            </>
+          } />
+          <Route path="/influencer-dashboard" element={
+            <>
+              <InfluencerDashboard />
+            </>
+          } />
+          <Route path="/influencer/campaigns" element={
+            <>
+              <InfluencerCampaigns />
+            </>
+          } />
+          <Route path="/brand/campaigns" element={
+            <>
+              <BrandCampaigns />
+            </>
+          } />
+          <Route path="/influencer/settings" element={
+            <>
+              <InfluencerSettings />
+            </>
+          } />
+          <Route path="/brand/settings" element={
+            <>
+              <BrandSettings />
+            </>
+          } />
+          <Route path="/oauth-settings" element={
+            <>
+              <OAuthSettings />
+            </>
+          } />
+          <Route path="/discover-users" element={
+            <>
+              <DiscoverUsers />
+            </>
+          } />
+          <Route path="/messages" element={
+            <>
+              <Messages />
+            </>
+          } />
+          <Route path="/fair-price-index" element={
+            <>
+              <Navbar />
+              <FairPriceIndex />
+              <Footer />
+            </>
+          } />
+          {/* OAuth Callback Routes */}
+          <Route path="/auth/:platform/callback" element={<OAuthCallback />} />
         </Routes>
       </div>
     </Router>

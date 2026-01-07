@@ -1,0 +1,110 @@
+.expertise-section {
+    background-color: #f4f5f7;
+    /* Light gray background matching reference */
+    padding: 80px 20px;
+}
+
+.expertise-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.expertise-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.expertise-heading {
+    font-family: 'MontserratExtraLight', sans-serif;
+    font-weight: 200;
+    font-size: 35px;
+    margin: 0 0 30px 0;
+    color: #333;
+    line-height: 1.2;
+}
+
+.expertise-sub {
+    font-weight: 300;
+}
+
+.talk-btn {
+    background: transparent;
+    border: 1px solid #333;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.talk-btn:hover {
+    background: #333;
+    color: #fff;
+}
+
+.expertise-image-wrapper {
+    flex: 1.5;
+    max-width: 700px;
+}
+
+.expertise-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.expertise-img-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.expertise-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 1px solid #FDB714;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.expertise-play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(253, 183, 20, 0.1);
+}
+
+.play-triangle {
+    width: 0;
+    height: 0;
+    border-left: 12px solid #FDB714;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left: 4px;
+}
+
+@media (max-width: 992px) {
+    .expertise-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .expertise-heading {
+        font-size: 2.5rem;
+    }
+}

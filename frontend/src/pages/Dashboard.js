@@ -8,6 +8,39 @@ const Dashboard = () => {
   const [influencers, setInfluencers] = useState([]);
   const [activeCategory, setActiveCategory] = useState('Fashion / Lifestyle');
 
+  const banners = [
+    {
+      id: '01',
+      title: "Collaborating with 500+ Gaming streamers for BGMI to drive results",
+      cta: "Talk to us",
+      image: "https://www.influencer.in/wp-content/uploads/2024/09/Homepage-Banner.png",
+      bgColor: "linear-gradient(135deg, #422144 0%, #832765 100%)"
+    },
+    {
+      id: '02',
+      title: "Check out our Mobile Version for on-the-go influencer discovery",
+      cta: "Try Now",
+      image: "https://www.influencer.in/wp-content/uploads/2024/09/Mobile-Version.jpg",
+      bgColor: "linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%)"
+    },
+    {
+      id: '03',
+      title: "Teaming up with celebrities for Samsonite and reaching a whopping 100 audience",
+      cta: "Talk to us",
+      image: "https://www.influencer.in/wp-content/uploads/2024/02/samsonite-banner.webp",
+      bgColor: "linear-gradient(135deg, #1a2a44 0%, #2a4483 100%)"
+    },
+    {
+      id: '04',
+      title: "70% of brands have increased their influencer marketing spends in 2025",
+      cta: "Read More!",
+      image: "https://www.influencer.in/wp-content/uploads/2023/10/banners2.webp",
+      bgColor: "linear-gradient(135deg, #4A2B21 0%, #832742 100%)"
+    }
+  ];
+
+  const [activeBanner, setActiveBanner] = useState(0);
+
   const categories = [
     'Fashion / Lifestyle',
     'Travel',
@@ -126,11 +159,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     setInfluencers(sampleInfluencers[activeCategory] || []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory]);
 
-  const handleInfluencerClick = (instagramUrl) => {
-    window.open(instagramUrl, '_blank');
-  };
 
   const handleCardClick = (influencer) => {
     navigate(`/influencer/${influencer.id}`);
@@ -149,6 +180,50 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-page">
+      {/* Hero Carousel Section */}
+      <section className="hero-carousel-section" style={{ background: banners[activeBanner].bgColor }}>
+        <div className="carousel-container container">
+          <div className="carousel-left">
+            <div className="social-sidebar">
+              <span className="social-dot">f</span>
+              <span className="social-dot">ig</span>
+              <span className="social-dot">yt</span>
+            </div>
+            <div className="carousel-nav">
+              {banners.map((banner, index) => (
+                <div
+                  key={banner.id}
+                  className={`nav-item ${activeBanner === index ? 'active' : ''}`}
+                  onClick={() => setActiveBanner(index)}
+                >
+                  <span className="nav-number">{banner.id}</span>
+                  <div className="nav-line"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="carousel-middle">
+            <div className="image-frame">
+              <img key={activeBanner} src={banners[activeBanner].image} alt="Banner" className="banner-img" />
+            </div>
+          </div>
+
+          <div className="carousel-right">
+            <h1 className="banner-title">
+              {banners[activeBanner].title}
+            </h1>
+            <button className="banner-cta-btn">
+              {banners[activeBanner].cta}
+            </button>
+          </div>
+
+          <div className="enquire-now-tag">
+            <span>ENQUIRE NOW</span>
+          </div>
+        </div>
+      </section>
+
       <DashboardFeatures />
 
       {/* Influencer Grid Section */}

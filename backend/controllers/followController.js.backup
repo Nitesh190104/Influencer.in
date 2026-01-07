@@ -1,0 +1,441 @@
+const Follow = require('../models/Follow');
+const Block = require('../models/Block');
+const User = require('../models/User');
+const Notification = require('../models/Notification');
+
+// Follow a user
+exports.followUser = async (req, res) => {
+    try {
+        const followerId = req.user.id;
+        const { userId } = req.params;
+
+        // Prevent self-follow
+        if (followerId === userId) {
+            return res.status(400).json({
+                success: false,
+                message: 'You cannot follow yourself'
+            });
+        }
+
+        // Check if target user exists
+        const targetUser = await User.findById(userId);
+        if (!targetUser) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
+        }
+
+        // Check if blocked
+        const isBlocked = await Block.findOne({
+            $or: [
+                { blocker: followerId, blocked: userId },
+                { blocker: userId, blocked: followerId }
+            ]
+        });
+
+        if (isBlocked) {
+            return res.status(403).json({
+                success: false,
+                message: 'Cannot follow this user'
+            });
+        }
+
+        // Check if already following or pending
+        const existingFollow = await Follow.findOne({
+            follower: followerId,
+            following: userId
+        });
+
+        if (existingFollow) {
+            return res.status(400).json({
+                success: false,
+                message: existingFollow.status === 'pending' ? 'Follow request already sent' : 'Already following this user'
+            });
+        }
+
+        // Create follow relationship with pending status
+        const follow = await Follow.create({
+            follower: followerId,
+            following: userId,
+            status: 'pending'
+        });
+
+        // Create notification for the user being followed
+        await Notification.create({
+            user: userId,
+            type: 'follow_request',
+            from: followerId,
+            data: {
+                followId: follow._id
+            }
+        });
+
+        res.json({
+            success: true,
+            message: 'Follow request sent',
+            data: {
+                status: 'pending'
+            }
+        });
+    } catch (error) {
+        console.error('Follow user error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to follow user',
+            error: error.message
+        });
+    }
+};
+
+// Unfollow a user
+exports.unfollowUser = async (req, res) => {
+    try {
+        const followerId = req.user.id;
+        const { userId } = req.params;
+
+        const result = await Follow.findOneAndDelete({
+            follower: followerId,
+            following: userId
+        });
+
+        if (!result) {
+            return res.status(404).json({
+                success: false,
+                message: 'You are not following this user'
+            });
+        }
+
+        res.json({
+            success: true,
+            message: 'Successfully unfollowed user'
+        });
+    } catch (error) {
+        console.error('Unfollow user error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to unfollow user',
+            error: error.message
+        });
+    }
+};
+
+// Get followers list
+exports.getFollowers = async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        const followers = await Follow.find({ following: userId })
+            .populate('follower', 'name email userType')
+            .sort({ createdAt: -1 });
+
+        const followersList = followers.map(f => ({
+            ...f.follower.toObject(),
+            followedAt: f.createdAt
+        }));
+
+        res.json({
+            success: true,
+            data: followersList,
+            count: followersList.length
+        });
+    } catch (error) {
+        console.error('Get followers error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to fetch followers',
+            error: error.message
+        });
+    }
+};
+
+// Get following list
+exports.getFollowing = async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        const following = await Follow.find({ follower: userId })
+            .populate('following', 'name email userType')
+            .sort({ createdAt: -1 });
+
+        const followingList = following.map(f => ({
+            ...f.following.toObject(),
+            followedAt: f.createdAt
+        }));
+
+        res.json({
+            success: true,
+            data: followingList,
+            count: followingList.length
+        });
+    } catch (error) {
+        console.error('Get following error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to fetch following list',
+            error: error.message
+        });
+    }
+};
+
+// Check follow status with a user
+exports.getFollowStatus = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const { targetUserId } = req.params;
+
+        const [isFollowing, isFollower] = await Promise.all([
+            Follow.findOne({ follower: userId, following: targetUserId }),
+            Follow.findOne({ follower: targetUserId, following: userId })
+        ]);
+
+        res.json({
+            success: true,
+            data: {
+                isFollowing: !!isFollowing,
+                isFollower: !!isFollower,
+                isMutual: !!isFollowing && !!isFollower
+            }
+        });
+    } catch (error) {
+        console.error('Get follow status error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to check follow status',
+            error: error.message
+        });
+    }
+};
+
+// Block a user
+exports.blockUser = async (req, res) => {
+    try {
+        const blockerId = req.user.id;
+        const { userId } = req.params;
+        const { reason } = req.body;
+
+        if (blockerId === userId) {
+            return res.status(400).json({
+                success: false,
+                message: 'You cannot block yourself'
+            });
+        }
+
+        // Remove any existing follows
+        await Promise.all([
+            Follow.deleteMany({
+                $or: [
+                    { follower: blockerId, following: userId },
+                    { follower: userId, following: blockerId }
+                ]
+            })
+        ]);
+
+        // Create block
+        await Block.findOneAndUpdate(
+            { blocker: blockerId, blocked: userId },
+            { blocker: blockerId, blocked: userId, reason },
+            { upsert: true, new: true }
+        );
+
+        res.json({
+            success: true,
+            message: 'User blocked successfully'
+        });
+    } catch (error) {
+        console.error('Block user error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to block user',
+            error: error.message
+        });
+    }
+};
+
+// Unblock a user
+exports.unblockUser = async (req, res) => {
+    try {
+        const blockerId = req.user.id;
+        const { userId } = req.params;
+
+        const result = await Block.findOneAndDelete({
+            blocker: blockerId,
+            blocked: userId
+        });
+
+        if (!result) {
+            return res.status(404).json({
+                success: false,
+                message: 'User is not blocked'
+            });
+        }
+
+        res.json({
+            success: true,
+            message: 'User unblocked successfully'
+        });
+    } catch (error) {
+        console.error('Unblock user error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to unblock user',
+            error: error.message
+        });
+    }
+};
+
+// Get blocked users list
+exports.getBlockedUsers = async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        const blocked = await Block.find({ blocker: userId })
+            .populate('blocked', 'name email userType')
+            .sort({ createdAt: -1 });
+
+        const blockedList = blocked.map(b => ({
+            ...b.blocked.toObject(),
+            blockedAt: b.createdAt,
+            reason: b.reason
+        }));
+
+        res.json({
+            success: true,
+            data: blockedList,
+            count: blockedList.length
+        });
+    } catch (error) {
+        console.error('Get blocked users error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to fetch blocked users',
+            error: error.message
+        });
+    }
+};
+/ /   G e t   p e n d i n g   f o l l o w   r e q u e s t s  
+ e x p o r t s . g e t P e n d i n g F o l l o w R e q u e s t s   =   a s y n c   ( r e q ,   r e s )   = >   {  
+         t r y   {  
+                 c o n s t   u s e r I d   =   r e q . u s e r . i d ;  
+  
+                 c o n s t   r e q u e s t s   =   a w a i t   F o l l o w . f i n d ( {  
+                         f o l l o w i n g :   u s e r I d ,  
+                         s t a t u s :   ' p e n d i n g '  
+                 } )  
+                         . p o p u l a t e ( ' f o l l o w e r ' ,   ' n a m e   e m a i l   u s e r T y p e ' )  
+                         . s o r t ( {   c r e a t e d A t :   - 1   } ) ;  
+  
+                 c o n s t   r e q u e s t s L i s t   =   r e q u e s t s . m a p ( r   = >   ( {  
+                         _ i d :   r . _ i d ,  
+                         u s e r :   r . f o l l o w e r ,  
+                         c r e a t e d A t :   r . c r e a t e d A t  
+                 } ) ) ;  
+  
+                 r e s . j s o n ( {  
+                         s u c c e s s :   t r u e ,  
+                         d a t a :   r e q u e s t s L i s t ,  
+                         c o u n t :   r e q u e s t s L i s t . l e n g t h  
+                 } ) ;  
+         }   c a t c h   ( e r r o r )   {  
+                 c o n s o l e . e r r o r ( ' G e t   p e n d i n g   r e q u e s t s   e r r o r : ' ,   e r r o r ) ;  
+                 r e s . s t a t u s ( 5 0 0 ) . j s o n ( {  
+                         s u c c e s s :   f a l s e ,  
+                         m e s s a g e :   ' F a i l e d   t o   f e t c h   f o l l o w   r e q u e s t s ' ,  
+                         e r r o r :   e r r o r . m e s s a g e  
+                 } ) ;  
+         }  
+ } ;  
+  
+ / /   A c c e p t   f o l l o w   r e q u e s t  
+ e x p o r t s . a c c e p t F o l l o w R e q u e s t   =   a s y n c   ( r e q ,   r e s )   = >   {  
+         t r y   {  
+                 c o n s t   u s e r I d   =   r e q . u s e r . i d ;  
+                 c o n s t   {   r e q u e s t I d   }   =   r e q . p a r a m s ;  
+  
+                 c o n s t   f o l l o w   =   a w a i t   F o l l o w . f i n d B y I d ( r e q u e s t I d ) ;  
+  
+                 i f   ( ! f o l l o w   | |   ! f o l l o w . f o l l o w i n g . e q u a l s ( u s e r I d ) )   {  
+                         r e t u r n   r e s . s t a t u s ( 4 0 4 ) . j s o n ( {  
+                                 s u c c e s s :   f a l s e ,  
+                                 m e s s a g e :   ' F o l l o w   r e q u e s t   n o t   f o u n d '  
+                         } ) ;  
+                 }  
+  
+                 i f   ( f o l l o w . s t a t u s   ! = =   ' p e n d i n g ' )   {  
+                         r e t u r n   r e s . s t a t u s ( 4 0 0 ) . j s o n ( {  
+                                 s u c c e s s :   f a l s e ,  
+                                 m e s s a g e :   ' R e q u e s t   a l r e a d y   p r o c e s s e d '  
+                         } ) ;  
+                 }  
+  
+                 / /   U p d a t e   s t a t u s   t o   a c c e p t e d  
+                 f o l l o w . s t a t u s   =   ' a c c e p t e d ' ;  
+                 a w a i t   f o l l o w . s a v e ( ) ;  
+  
+                 / /   D e l e t e   t h e   n o t i f i c a t i o n  
+                 a w a i t   N o t i f i c a t i o n . d e l e t e O n e ( {  
+                         u s e r :   u s e r I d ,  
+                         t y p e :   ' f o l l o w _ r e q u e s t ' ,  
+                         ' d a t a . f o l l o w I d ' :   r e q u e s t I d  
+                 } ) ;  
+  
+                 / /   C r e a t e   a c c e p t a n c e   n o t i f i c a t i o n   f o r   t h e   f o l l o w e r  
+                 a w a i t   N o t i f i c a t i o n . c r e a t e ( {  
+                         u s e r :   f o l l o w . f o l l o w e r ,  
+                         t y p e :   ' f o l l o w _ a c c e p t e d ' ,  
+                         f r o m :   u s e r I d  
+                 } ) ;  
+  
+                 r e s . j s o n ( {  
+                         s u c c e s s :   t r u e ,  
+                         m e s s a g e :   ' F o l l o w   r e q u e s t   a c c e p t e d '  
+                 } ) ;  
+         }   c a t c h   ( e r r o r )   {  
+                 c o n s o l e . e r r o r ( ' A c c e p t   f o l l o w   r e q u e s t   e r r o r : ' ,   e r r o r ) ;  
+                 r e s . s t a t u s ( 5 0 0 ) . j s o n ( {  
+                         s u c c e s s :   f a l s e ,  
+                         m e s s a g e :   ' F a i l e d   t o   a c c e p t   f o l l o w   r e q u e s t ' ,  
+                         e r r o r :   e r r o r . m e s s a g e  
+                 } ) ;  
+         }  
+ } ;  
+  
+ / /   R e j e c t   f o l l o w   r e q u e s t  
+ e x p o r t s . r e j e c t F o l l o w R e q u e s t   =   a s y n c   ( r e q ,   r e s )   = >   {  
+         t r y   {  
+                 c o n s t   u s e r I d   =   r e q . u s e r . i d ;  
+                 c o n s t   {   r e q u e s t I d   }   =   r e q . p a r a m s ;  
+  
+                 c o n s t   f o l l o w   =   a w a i t   F o l l o w . f i n d B y I d ( r e q u e s t I d ) ;  
+  
+                 i f   ( ! f o l l o w   | |   ! f o l l o w . f o l l o w i n g . e q u a l s ( u s e r I d ) )   {  
+                         r e t u r n   r e s . s t a t u s ( 4 0 4 ) . j s o n ( {  
+                                 s u c c e s s :   f a l s e ,  
+                                 m e s s a g e :   ' F o l l o w   r e q u e s t   n o t   f o u n d '  
+                         } ) ;  
+                 }  
+  
+                 / /   D e l e t e   t h e   f o l l o w   r e q u e s t  
+                 a w a i t   F o l l o w . f i n d B y I d A n d D e l e t e ( r e q u e s t I d ) ;  
+  
+                 / /   D e l e t e   t h e   n o t i f i c a t i o n  
+                 a w a i t   N o t i f i c a t i o n . d e l e t e O n e ( {  
+                         u s e r :   u s e r I d ,  
+                         t y p e :   ' f o l l o w _ r e q u e s t ' ,  
+                         ' d a t a . f o l l o w I d ' :   r e q u e s t I d  
+                 } ) ;  
+  
+                 r e s . j s o n ( {  
+                         s u c c e s s :   t r u e ,  
+                         m e s s a g e :   ' F o l l o w   r e q u e s t   r e j e c t e d '  
+                 } ) ;  
+         }   c a t c h   ( e r r o r )   {  
+                 c o n s o l e . e r r o r ( ' R e j e c t   f o l l o w   r e q u e s t   e r r o r : ' ,   e r r o r ) ;  
+                 r e s . s t a t u s ( 5 0 0 ) . j s o n ( {  
+                         s u c c e s s :   f a l s e ,  
+                         m e s s a g e :   ' F a i l e d   t o   r e j e c t   f o l l o w   r e q u e s t ' ,  
+                         e r r o r :   e r r o r . m e s s a g e  
+                 } ) ;  
+         }  
+ } ;  
+ 

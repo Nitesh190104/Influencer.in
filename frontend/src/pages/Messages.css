@@ -1,0 +1,105 @@
+.messages-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf2 100%);
+    padding: 20px;
+}
+
+.messages-header-bar {
+    max-width: 1400px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.back-to-dashboard-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #667eea;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.back-to-dashboard-btn:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+    transform: translateX(-4px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.back-arrow {
+    font-size: 18px;
+    transition: transform 0.3s;
+}
+
+.back-to-dashboard-btn:hover .back-arrow {
+    transform: translateX(-3px);
+}
+
+.messages-title {
+    flex: 1;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.messages-spacer {
+    width: 140px;
+}
+
+.messages-container {
+    display: flex;
+    height: calc(100vh - 140px);
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .messages-page {
+        padding: 15px;
+    }
+
+    .messages-header-bar {
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 15px;
+    }
+
+    .back-to-dashboard-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .messages-title {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .messages-spacer {
+        display: none;
+    }
+
+    .messages-container {
+        flex-direction: column;
+        height: calc(100vh - 180px);
+    }
+}

@@ -139,11 +139,11 @@
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  
+
   .category-links {
     gap: 10px 15px;
   }
-  
+
   .category-links a {
     font-size: 13px;
   }

@@ -20,7 +20,8 @@ const LiveCampaigns = () => {
                 "Performance",
                 "10K - 1M"
             ],
-            image: "https://images.unsplash.com/photo-1586339949916-3e945cbe6a39?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/blackbuck.png",
+            videoLink: "https://www.youtube.com/watch?v=q_ayG5L9aRI",
             imageOnLeft: true
         },
         {
@@ -32,7 +33,8 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "50K - 1M"
             ],
-            image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/TataCLiQ.png",
+            videoLink: "https://www.youtube.com/watch?v=xvKlZ08AQf4",
             imageOnLeft: false
         },
         {
@@ -44,7 +46,8 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "50K - 1M"
             ],
-            image: "https://images.unsplash.com/photo-1481399124169-474e731d7fec?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/GOCOLORS.webp",
+            videoLink: "https://www.youtube.com/watch?v=_lDzNA7xLXg",
             imageOnLeft: true
         },
         {
@@ -56,7 +59,8 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "10K - 1M"
             ],
-            image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/PropahLady.webp",
+            videoLink: "https://www.youtube.com/watch?v=LR0LuWCa1KM",
             imageOnLeft: true
         },
         {
@@ -68,7 +72,7 @@ const LiveCampaigns = () => {
                 "Instagram, Youtube",
                 "100K - 1M"
             ],
-            image: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/wetter.png",
             imageOnLeft: false
         },
         {
@@ -80,7 +84,8 @@ const LiveCampaigns = () => {
                 "Performance",
                 "20K - 200K"
             ],
-            image: "https://images.unsplash.com/photo-1523240715639-93f8fa096ee2?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/Leap-Finance.webp",
+            videoLink: "https://www.youtube.com/watch?v=h91uH2kJ0sE",
             imageOnLeft: true
         },
         {
@@ -92,7 +97,7 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "10K - 1M"
             ],
-            image: "https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/flipkart.png",
             imageOnLeft: false
         },
         {
@@ -104,7 +109,7 @@ const LiveCampaigns = () => {
                 "Engagement focused",
                 "100K - 10M"
             ],
-            image: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/dabur.webp",
             imageOnLeft: true
         },
         {
@@ -116,7 +121,7 @@ const LiveCampaigns = () => {
                 "Performance",
                 "50K - 1M"
             ],
-            image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/Q-Jobs.webp",
             imageOnLeft: false
         },
         {
@@ -128,7 +133,8 @@ const LiveCampaigns = () => {
                 "Youtube, Instagram",
                 "5K - 600K"
             ],
-            image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/Gamezy-camp.png",
+            videoLink: "https://www.youtube.com/watch?v=lGodK4WG4l0",
             imageOnLeft: true
         },
         {
@@ -140,7 +146,8 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "50K - 700K"
             ],
-            image: "https://images.unsplash.com/photo-1481399124169-474e731d7fec?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/Nayra-Influencer-Campaign.webp",
+            videoLink: "https://www.instagram.com/reel/CbhuINeggoC/?utm_medium=copy_link",
             imageOnLeft: false
         },
         {
@@ -152,7 +159,7 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "45K - 1M"
             ],
-            image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/sunteck.png",
             imageOnLeft: true
         },
         {
@@ -164,7 +171,8 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "50K - 700K"
             ],
-            image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/Jodii-Campaign-BM.webp",
+            videoLink: "https://www.youtube.com/watch?v=-jpLpCUTfF4",
             imageOnLeft: false
         },
         {
@@ -176,7 +184,7 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "5K - 100K"
             ],
-            image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/Sony-Music-Campaign.webp",
             imageOnLeft: true
         },
         {
@@ -188,7 +196,7 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "25K - 100K"
             ],
-            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/zest.png",
             imageOnLeft: false
         },
         {
@@ -200,7 +208,8 @@ const LiveCampaigns = () => {
                 "Instagram/Youtube",
                 "50K - 600K"
             ],
-            image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/juiter-campaigns.webp",
+            videoLink: "https://www.instagram.com/reel/CVGCRniFkbl/",
             imageOnLeft: true
         },
         {
@@ -212,7 +221,7 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "20K - 75K"
             ],
-            image: "https://images.unsplash.com/photo-1454165833767-027ffea9e77b?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/dhan.webp",
             imageOnLeft: false
         },
         {
@@ -224,7 +233,7 @@ const LiveCampaigns = () => {
                 "Youtube, Instagram",
                 "50K - 10M"
             ],
-            image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/battleground.png",
             imageOnLeft: true
         },
         {
@@ -236,7 +245,8 @@ const LiveCampaigns = () => {
                 "Youtube, Instagram",
                 "10K - 1M"
             ],
-            image: "https://images.unsplash.com/photo-1552824236-07778198d22d?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/Clash-of-Titans-campaign-1.webp",
+            videoLink: "https://www.youtube.com/watch?v=PCi6_9dmK3Q",
             imageOnLeft: false
         },
         {
@@ -248,7 +258,7 @@ const LiveCampaigns = () => {
                 "Instagram",
                 "10 - 100K"
             ],
-            image: "https://images.unsplash.com/photo-1542222024-c39e2281f121?w=800&q=80",
+            image: "https://www.influencer.in/wp-content/uploads/2023/03/dhani.webp",
             imageOnLeft: true
         }
     ];
@@ -290,12 +300,17 @@ const LiveCampaigns = () => {
                     <section key={index} className={`campaign-row ${camp.imageOnLeft ? 'img-left' : 'img-right'}`}>
                         <div className="container campaign-flex">
                             <div className="campaign-image-box">
-                                <div className="video-thumb-container">
-                                    <img src={camp.image} alt={camp.title} className="campaign-thumb" />
-                                    <div className="play-button-overlay">
-                                        <div className="play-icon">▶</div>
+                                {camp.videoLink ? (
+                                    <a href={camp.videoLink} target="_blank" rel="noopener noreferrer" className="campaign-video-link">
+                                        <div className="video-thumb-container">
+                                            <img src={camp.image} alt={camp.title} className="campaign-thumb" />
+                                        </div>
+                                    </a>
+                                ) : (
+                                    <div className="video-thumb-container">
+                                        <img src={camp.image} alt={camp.title} className="campaign-thumb" />
                                     </div>
-                                </div>
+                                )}
                             </div>
                             <div className="campaign-info-box">
                                 <p className="why-choose">WHY CHOOSE {camp.brand}?</p>

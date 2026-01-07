@@ -5,80 +5,167 @@
 
 .campaign-track {
   background: white;
-  border-radius: 15px;
-  padding: 60px;
+  padding: 0;
+  /* Remove padding to let image fill */
   margin-bottom: 80px;
+  background-color: transparent;
+  /* Or remove background if not needed */
 }
 
 .track-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
+  grid-template-columns: 2fr 1fr;
+  /* Image much wider, text smaller */
+  gap: 40px;
+  align-items: stretch;
+  /* Stretch to match height */
 }
 
-.track-image .placeholder-video {
-  background: #e0e0e0;
-  height: 400px;
-  border-radius: 10px;
+.track-image {
+  position: relative;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  /* Fill height */
+  display: flex;
+}
+
+.track-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Cover ensuring no gaps */
+  display: block;
+}
+
+.track-play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.play-circle-gold {
+  width: 70px;
+  height: 70px;
+  border: 2px solid #FDB714;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #999;
+  transition: all 0.3s;
 }
 
-.track-text h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
+.play-circle-gold:hover {
+  background: rgba(253, 183, 20, 0.1);
+  transform: scale(1.1);
+}
+
+.play-tri-gold {
+  width: 0;
+  height: 0;
+  border-left: 14px solid #FDB714;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  margin-left: 4px;
+}
+
+.track-text {
+  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Space out the two blocks */
+  height: 100%;
+  /* Match image height */
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+
+.track-heading {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #333;
+  margin-bottom: 12px;
   line-height: 1.3;
 }
 
-.track-text p {
-  color: #666;
+.track-heading-small {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #333;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.track-subtext {
+  color: #555;
+  font-size: 1rem;
   margin-bottom: 20px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-.track-text h3 {
-  font-size: 24px;
-  margin: 40px 0 15px;
-}
+/* Removed separator-space */
 
-.signup-btn,
-.check-price-btn {
+.signup-btn {
   background: #FDB714;
   color: #000;
-  padding: 12px 30px;
+  padding: 10px 24px;
+  /* Much small */
   border: none;
-  border-radius: 5px;
-  font-weight: bold;
+  border-radius: 2px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  /* Smaller font */
   cursor: pointer;
   transition: transform 0.3s;
-  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .check-price-btn {
   background: white;
-  border: 2px solid #333;
+  border: 1px solid #333;
+  color: #333;
+  padding: 12px 28px;
+  /* Little small, but bigger than Signup */
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
 }
 
-.signup-btn:hover,
+.signup-btn:hover {
+  background: #e5a500;
+}
+
 .check-price-btn:hover {
-  transform: translateY(-3px);
+  background: #333;
+  color: white;
 }
 
 .recent-work {
   margin: 100px 0;
   background-color: #f1f0f2;
-  padding: 80px 20px;
-  border-radius: 20px;
+  padding: 30px 0;
+  border-radius: 0;
 }
 
 .recent-work-title {
   text-align: center;
-  font-size: 42px;
-  margin-bottom: 60px;
-  color: #333;
+  font-family: 'MontserratExtraLight', sans-serif;
+  font-size: 35px;
+  font-weight: 200;
+  margin: 0 0 30px 0;
+  color: #212529;
 }
 
 .recent-work .highlight {
@@ -87,19 +174,20 @@
 
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  max-width: 1100px;
+  grid-template-columns: repeat(4, 283px);
+  gap: 54.6px;
+  max-width: 1320px;
   margin: 0 auto;
+  justify-content: center;
 }
 
 .video-card {
-  aspect-ratio: 9/16;
+  width: 283px;
+  height: 500px;
   border-radius: 0;
-  /* Boxy look like screenshot */
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: none;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -131,6 +219,8 @@
 .play-icon-circle {
   width: 80px;
   height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   border: 4px solid #FDB714;
   border-radius: 50%;
   display: flex;
@@ -138,6 +228,7 @@
   justify-content: center;
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2px);
+  aspect-ratio: 1 / 1;
 }
 
 .play-tri {
@@ -151,22 +242,27 @@
 
 .brand-logo-box {
   background: white;
-  width: 120px;
-  height: 50px;
+  width: 180px;
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 12px;
   position: absolute;
   bottom: 25px;
-  padding: 5px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .brand-logo-img {
-  max-width: 90%;
-  max-height: 80%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  display: block;
 }
 
 .word-overlay {
@@ -183,31 +279,32 @@
 
 .approach-title {
   text-align: center;
-  font-size: 38px;
-  margin: 80px 0 50px;
+  font-size: 36px;
+  font-weight: 200;
+  /* Very thin */
+  margin: 100px 0 60px;
   color: #333;
+  letter-spacing: 0.5px;
 }
 
 .approaches-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 30px;
-  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  /* Wider container for spacing */
   margin: 0 auto;
+  gap: 30px;
 }
 
 .approach-card {
-  background: white;
-  border-radius: 50%;
-  width: 140px;
-  height: 140px;
+  background: transparent;
+  width: 160px;
+  /* Slightly wider */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
 }
 
@@ -215,14 +312,39 @@
   transform: translateY(-5px);
 }
 
-.approach-icon {
-  font-size: 32px;
-  margin-bottom: 10px;
+.approach-icon-wrapper {
+  width: 90px;
+  height: 90px;
+  background-color: #f7f7f7;
+  /* Very light grey */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  /* More space below icon */
+  transition: background-color 0.3s;
+}
+
+.approach-card:hover .approach-icon-wrapper {
+  background-color: #ececec;
+}
+
+.approach-icon-img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  opacity: 0.8;
+  /* Slightly softer */
 }
 
 .approach-card h4 {
-  font-size: 12px;
-  line-height: 1.3;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #222;
+  font-weight: 500;
+  /* Normal weight, not bold */
+  margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -240,4 +362,88 @@
     width: 120px;
     height: 120px;
   }
+}
+
+/* Video Modal Styles */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes expandModal {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+    width: 450px !important;
+    height: 800px !important;
+    max-width: none !important;
+    max-height: 90vh !important;
+  }
+}
+
+.video-modal-content {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 620px;
+  max-height: 90vh;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: white;
+  border: 2px solid #333;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 100000;
+  padding: 4px 8px;
+  width: auto;
+  height: auto;
+  line-height: 1;
+  transition: all 0.2s;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close:hover {
+  background: #f0f0f0;
+  transform: scale(1.1);
+}
+
+.video-modal iframe {
+  border: none;
 }

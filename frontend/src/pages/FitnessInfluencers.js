@@ -156,18 +156,23 @@ function FitnessInfluencers() {
                             >
                                 <div className="influencer-image-wrapper">
                                     <img src={influencer.image} alt={influencer.name} className="influencer-img" />
+                                    <div className="influencer-overlay">
+                                        <div className="overlay-content">
+                                            <h3 className="overlay-name">{influencer.name}</h3>
+                                            <p className="overlay-category">{influencer.category}</p>
+                                            <div className="overlay-followers">
+                                                <span className="instagram-icon">{instagramLogo}</span>
+                                                <span>{influencer.followers}</span>
+                                            </div>
+                                            <button
+                                                className="overlay-insights-button"
+                                                onClick={() => handleCardClick(influencer)}
+                                            >
+                                                View Insights
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h3 className="influencer-name">{influencer.name}</h3>
-                                <p className="influencer-category">{influencer.category}</p>
-                                <div className="influencer-followers">
-                                    <span className="instagram-icon">{instagramLogo}</span> {influencer.followers}
-                                </div>
-                                <button
-                                    className="view-insights-button"
-                                    onClick={() => handleCardClick(influencer)}
-                                >
-                                    View Insights
-                                </button>
                             </div>
                         ))}
                     </div>

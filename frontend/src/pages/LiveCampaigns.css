@@ -145,6 +145,13 @@
     flex: 1;
 }
 
+.campaign-video-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+}
+
 .video-thumb-container {
     width: 100%;
     border-radius: 40px;
@@ -152,6 +159,12 @@
     position: relative;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     aspect-ratio: 4/5;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.campaign-video-link:hover .video-thumb-container {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .campaign-thumb {
@@ -174,6 +187,12 @@
     align-items: center;
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.campaign-video-link:hover .play-button-overlay {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(255, 255, 255, 1);
 }
 
 .play-icon {

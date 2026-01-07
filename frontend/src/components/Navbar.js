@@ -36,8 +36,7 @@ const Navbar = () => {
   ];
 
   const contactLinks = [
-    'Meet The Team',
-    'Join Us'
+    'Meet The Team'
   ];
 
   return (
@@ -46,8 +45,7 @@ const Navbar = () => {
         <div className="nav-wrapper">
           <div className="logo">
             <Link to="/">
-              <div className="logo-icon">IN</div>
-              <span>INFLUENCER</span>
+              <img src="https://www.influencer.in/wp-content/themes/influencer-2022/images/logo.png" alt="Influencer" className="logo-image-navbar" />
             </Link>
           </div>
 
@@ -97,7 +95,7 @@ const Navbar = () => {
               {activeDropdown === 'products' && (
                 <div className="dropdown-menu">
                   <Link to="/dashboard-gate" className="dropdown-item">Influencer Dashboard</Link>
-                  <a href="#" className="dropdown-item">Fair Price Index</a>
+                  <Link to="/fair-price-index" className="dropdown-item">Fair Price Index</Link>
                 </div>
               )}
             </div>
@@ -125,9 +123,8 @@ const Navbar = () => {
               <span>Contact Us ▼</span>
               {activeDropdown === 'contact' && (
                 <div className="dropdown-menu">
-                  <Link to="/contact" className="dropdown-item">Contact Us</Link>
                   <Link to="/team" className="dropdown-item">Meet The Team</Link>
-                  <a href="#" className="dropdown-item">Join Us</a>
+                  <Link to="/signup" className="dropdown-item">Join Us</Link>
                 </div>
               )}
             </div>

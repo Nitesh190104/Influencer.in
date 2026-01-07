@@ -5,7 +5,10 @@ import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
+
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -16,75 +19,87 @@ const Login = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
-  };
-
-  const handleGoogleLogin = () => {
-    // Google OAuth integration
-    setMessage('Google Sign-In will be available soon!');
-    // In production, implement: window.location.href = 'http://localhost:5000/auth/google';
+    setMessage('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.email || !formData.password) {
       setMessage('Please fill in all fields');
+      setMessageType('error');
       return;
     }
 
     try {
-      setMessage('Logging in...');
-      // Here you would call your backend API
-      // const response = await axios.post('http://localhost:5000/api/auth/login', formData);
-      
-      // Simulate successful login
-      setTimeout(() => {
+      setLoading(true);
+      setMessage('');
+
+      const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+
+      if (response.data.success) {
+        // Store token and user info
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+
         setMessage('Login successful!');
+        setMessageType('success');
+
+        // Redirect based on user type
         setTimeout(() => {
-          navigate('/');
+          if (response.data.user.userType === 'brand') {
+            navigate('/brand-dashboard');
+          } else {
+            navigate('/influencer-dashboard');
+          }
         }, 1000);
-      }, 1000);
+      }
     } catch (error) {
-      setMessage('Invalid email or password');
       console.error('Login error:', error);
+      const errorMessage = error.response?.data?.message || 'Invalid email or password';
+      setMessage(errorMessage);
+      setMessageType('error');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="auth-container">
-      <div className="auth-left">
-        <div className="auth-left-content">
-          <h1>Discover, analyze, & track</h1>
-          <h2>Influencers for your campaigns</h2>
-          <p>Influencer.in empowers brands to expand their influencer marketing efforts and boost sales through Influencers. Discover influencers, manage campaigns, and track results.</p>
-          
-          <div className="influencer-collage">
-            <img src="https://i.ibb.co/WBXZc5y/influencer-collage.png" alt="Influencers" className="collage-image" />
-          </div>
-
-          <p className="trusted-text">Trusted by 200+ Leading brands and they love us!</p>
-          
-          <div className="brand-logos">
-            <span>SAMSUNG</span>
-            <span>Samsonite</span>
-            <span>GO COLORS!</span>
-            <span>BATTLEGROUNDS</span>
-          </div>
-        </div>
+      <div className="auth-left auth-left-bg-mode">
+        <img 
+          src="https://influencer-media.s3.ap-south-1.amazonaws.com/signup_web_new_1.jpeg" 
+          alt="Influencer Platform" 
+          className="auth-left-image"
+          onError={(e) => {
+            console.error('Image failed to load from S3');
+            // Try direct URL without crossOrigin
+            e.target.onerror = null; // Prevent infinite loop
+            e.target.src = 'https://influencer-media.s3.ap-south-1.amazonaws.com/signup_web_new_1.jpeg';
+          }}
+        />
       </div>
 
       <div className="auth-right">
         <div className="auth-form-container">
+          <button 
+            className="back-to-home-btn"
+            onClick={() => navigate('/')}
+            title="Back to Home"
+          >
+            <span className="back-arrow">←</span>
+            <span>Back to Home</span>
+          </button>
+          
           <div className="logo-header">
-            <div className="logo-icon">IN</div>
-            <span>INFLUENCER</span>
+            <img src="https://www.influencer.in/wp-content/themes/influencer-2022/images/logo.png" alt="Influencer" className="logo-image-auth" />
           </div>
 
           <h2 className="form-title">Hi, Welcome Back</h2>
           <p className="form-subtitle">Enter your credentials to continue</p>
 
           {message && (
-            <div className={`message ${message.includes('successful') ? 'success' : message.includes('Logging') ? 'info' : 'error'}`}>
+            <div className={`message ${messageType}`}>
               {message}
             </div>
           )}
@@ -94,7 +109,7 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="Work Email Address"
+                placeholder="Email Address"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -116,17 +131,8 @@ const Login = () => {
               <Link to="/forgot-password">Forgot Password?</Link>
             </div>
 
-            <button type="submit" className="submit-button">
-              Sign In
-            </button>
-
-            <div className="divider">
-              <span>Or</span>
-            </div>
-
-            <button type="button" className="google-button" onClick={handleGoogleLogin}>
-              <span className="google-icon">G</span>
-              Sign-in with Google
+            <button type="submit" className="submit-button" disabled={loading}>
+              {loading ? 'Signing In...' : 'Sign In'}
             </button>
 
             <div className="signup-link">

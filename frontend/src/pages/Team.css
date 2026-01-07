@@ -4,8 +4,10 @@
 }
 
 .team-header {
-  background: linear-gradient(135deg, #FDB714 0%, #F5A623 100%);
-  padding: 80px 20px;
+  background: linear-gradient(135deg, #ffe082 0%, #FDB714 100%);
+  /* Lighter gradient */
+  padding: 40px 20px;
+  /* Reduced height */
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -18,7 +20,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
   opacity: 0.5;
