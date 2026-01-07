@@ -9,8 +9,19 @@ dotenv.config();
 const app = express();
 
 // Middleware
+const allowedOrigins = ['http://localhost:3000', 'https://influencer-in.vercel.app'];
+
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://influencer-in.vercel.app'],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      console.log('Blocked by CORS:', origin); // Log blocked origins for debugging
+      var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   credentials: true
 }));
 app.use(express.json());
@@ -55,4 +66,5 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  console.log('Server Version: Dynamic CORS Update');
 });
