@@ -4,12 +4,18 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
 // Configure email transporter
+// Configure email transporter
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // use SSL
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD
-    }
+    },
+    // Add debug helper to log connection issues
+    debug: true,
+    logger: true
 });
 
 // Generate 6-digit OTP
