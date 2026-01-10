@@ -35,6 +35,7 @@ import BrandSettings from './pages/BrandSettings';
 import DiscoverUsers from './pages/DiscoverUsers';
 import Messages from './pages/Messages';
 import FairPriceIndex from './pages/FairPriceIndex';
+import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -242,6 +243,13 @@ function App() {
             <>
               <Navbar />
               <FairPriceIndex />
+              <Footer />
+            </>
+          } />
+          <Route path="/contact" element={
+            <>
+              <Navbar />
+              <Contact />
               <Footer />
             </>
           } />

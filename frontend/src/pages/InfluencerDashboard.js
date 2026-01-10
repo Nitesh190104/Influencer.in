@@ -12,10 +12,15 @@ const InfluencerDashboard = () => {
     const [loading, setLoading] = useState(true);
     const [socialAccounts, setSocialAccounts] = useState([]);
     const [syncing, setSyncing] = useState(false);
-    const [totalFollowers, setTotalFollowers] = useState(0);
     const [unreadCount, setUnreadCount] = useState(0);
     const [showFollowersModal, setShowFollowersModal] = useState(false);
     const [modalInitialTab, setModalInitialTab] = useState('followers');
+    const [stats, setStats] = useState({
+        activeCampaigns: 0,
+        collaborations: 0,
+        totalFollowers: 0,
+        earnings: 0
+    });
 
     useEffect(() => {
         // Check if user is logged in
@@ -38,10 +43,14 @@ const InfluencerDashboard = () => {
         setUser(userData);
         fetchSocialAccounts();
         fetchUnreadCount();
+        fetchStats();
         setLoading(false);
 
-        // Poll for unread messages every 10 seconds
-        const interval = setInterval(fetchUnreadCount, 10000);
+        // Poll for unread messages and stats every 10 seconds
+        const interval = setInterval(() => {
+            fetchUnreadCount();
+            fetchStats();
+        }, 10000);
         return () => clearInterval(interval);
     }, [navigate]);
 
@@ -57,13 +66,24 @@ const InfluencerDashboard = () => {
             if (response.data.success) {
                 const accounts = response.data.data;
                 setSocialAccounts(accounts);
-
-                // Calculate total followers
-                const total = accounts.reduce((sum, account) => sum + (account.followers || 0), 0);
-                setTotalFollowers(total);
             }
         } catch (error) {
             console.error('Failed to fetch social accounts:', error);
+        }
+    };
+
+    const fetchStats = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get('/api/stats/influencer', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (response.data.success) {
+                setStats(response.data.data);
+            }
+        } catch (error) {
+            console.error('Failed to fetch stats:', error);
         }
     };
 
@@ -251,7 +271,7 @@ const InfluencerDashboard = () => {
                         <div className="stat-card influencer-card">
                             <div className="stat-icon">🎯</div>
                             <div className="stat-info">
-                                <div className="stat-value">0</div>
+                                <div className="stat-value">{stats.activeCampaigns}</div>
                                 <div className="stat-label">Active Campaigns</div>
                             </div>
                         </div>
@@ -259,7 +279,7 @@ const InfluencerDashboard = () => {
                         <div className="stat-card influencer-card">
                             <div className="stat-icon">💼</div>
                             <div className="stat-info">
-                                <div className="stat-value">0</div>
+                                <div className="stat-value">{stats.collaborations}</div>
                                 <div className="stat-label">Collaborations</div>
                             </div>
                         </div>
@@ -270,7 +290,7 @@ const InfluencerDashboard = () => {
                         }} style={{ cursor: 'pointer' }}>
                             <div className="stat-icon">👥</div>
                             <div className="stat-info">
-                                <div className="stat-value">{formatNumber(totalFollowers)}</div>
+                                <div className="stat-value">{formatNumber(stats.totalFollowers)}</div>
                                 <div className="stat-label">Total Followers</div>
                             </div>
                         </div>
@@ -278,7 +298,7 @@ const InfluencerDashboard = () => {
                         <div className="stat-card influencer-card">
                             <div className="stat-icon">💰</div>
                             <div className="stat-info">
-                                <div className="stat-value">$0</div>
+                                <div className="stat-value">${stats.earnings}</div>
                                 <div className="stat-label">Earnings</div>
                             </div>
                         </div>

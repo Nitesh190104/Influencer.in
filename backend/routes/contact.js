@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Contact = require('../models/Contact');
+const { sendContactFormEmail } = require('../utils/emailService');
 
 // Get all contacts
 router.get('/', async (req, res) => {
@@ -16,10 +17,21 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const contact = new Contact(req.body);
   try {
+    // Save to database
     const newContact = await contact.save();
-    res.status(201).json({ 
+
+    // Send email notification
+    try {
+      await sendContactFormEmail(req.body);
+      console.log('Contact form email sent successfully');
+    } catch (emailError) {
+      console.error('Failed to send contact form email:', emailError);
+      // Don't fail the request if email fails, just log it
+    }
+
+    res.status(201).json({
       message: 'Contact form submitted successfully',
-      data: newContact 
+      data: newContact
     });
   } catch (error) {
     res.status(400).json({ message: error.message });

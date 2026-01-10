@@ -25,21 +25,17 @@ exports.getBrandStats = async (req, res) => {
         console.log('Influencers Count:', influencersCount);
 
         // Get all campaigns for this brand
-        const campaigns = await Campaign.find({ brandId: brandId })
-            .populate({
-                path: 'applications.influencer',
-                select: 'name'
-            });
+        const campaigns = await Campaign.find({ brandId: brandId });
 
-        // Calculate total reach (sum of followers from all influencers who applied)
+        // Calculate total reach (sum of website followers from all influencers who applied)
         let totalReach = 0;
         const appliedInfluencerIds = new Set();
 
         for (const campaign of campaigns) {
-            if (campaign.applications && campaign.applications.length > 0) {
-                for (const app of campaign.applications) {
-                    if (app.influencer && app.influencer._id) {
-                        appliedInfluencerIds.add(app.influencer._id.toString());
+            if (campaign.applicants && campaign.applicants.length > 0) {
+                for (const applicant of campaign.applicants) {
+                    if (applicant.influencerId) {
+                        appliedInfluencerIds.add(applicant.influencerId.toString());
                     }
                 }
             }
@@ -47,28 +43,22 @@ exports.getBrandStats = async (req, res) => {
 
         // Get follower counts for all unique influencers who applied
         if (appliedInfluencerIds.size > 0) {
-            const influencers = await User.find({
-                _id: { $in: Array.from(appliedInfluencerIds) }
-            }).select('socialAccounts');
-
-            for (const influencer of influencers) {
-                if (influencer.socialAccounts && influencer.socialAccounts.length > 0) {
-                    const followers = influencer.socialAccounts.reduce((sum, account) => {
-                        return sum + (account.followers || 0);
-                    }, 0);
-                    totalReach += followers;
-                }
+            for (const influencerId of appliedInfluencerIds) {
+                const followerCount = await Follow.countDocuments({
+                    following: influencerId,
+                    status: 'accepted'
+                });
+                totalReach += followerCount;
             }
         }
 
-        // Calculate budget spent (proportional per accepted influencer)
+        // Calculate budget spent (sum of budgets from campaigns with accepted applicants)
         let budgetSpent = 0;
         for (const campaign of campaigns) {
-            if (campaign.applications && campaign.applications.length > 0) {
-                const acceptedCount = campaign.applications.filter(app => app.status === 'accepted').length;
-                if (acceptedCount > 0 && campaign.budget) {
-                    // Divide budget proportionally among accepted influencers
-                    budgetSpent += (campaign.budget / acceptedCount) * acceptedCount;
+            if (campaign.applicants && campaign.applicants.length > 0) {
+                const hasAccepted = campaign.applicants.some(app => app.status === 'accepted');
+                if (hasAccepted && campaign.budget) {
+                    budgetSpent += campaign.budget;
                 }
             }
         }
@@ -104,35 +94,48 @@ exports.getInfluencerStats = async (req, res) => {
     try {
         const influencerId = req.user.id;
 
-        // Get user's social accounts
-        const user = await User.findById(influencerId).select('socialAccounts');
-
-        const totalFollowers = user.socialAccounts?.reduce((sum, account) => {
-            return sum + (account.followers || 0);
-        }, 0) || 0;
-
-        // Count campaigns applied to
-        const campaignsApplied = await Campaign.countDocuments({
-            'applications.influencer': influencerId
+        // Active Campaigns: Total number of all available campaigns
+        const activeCampaigns = await Campaign.countDocuments({
+            status: 'active'
         });
 
-        // Count accepted campaigns
-        const acceptedCampaigns = await Campaign.countDocuments({
-            'applications': {
+        // Collaborations: Campaigns where influencer is accepted
+        const collaborations = await Campaign.countDocuments({
+            'applicants': {
                 $elemMatch: {
-                    influencer: influencerId,
+                    influencerId: influencerId,
                     status: 'accepted'
                 }
             }
         });
 
+        // Total Followers: Users following this influencer on the website
+        const totalFollowers = await Follow.countDocuments({
+            following: influencerId,
+            status: 'accepted'
+        });
+
+        // Earnings: Sum of budgets from campaigns where influencer is accepted
+        const acceptedCampaigns = await Campaign.find({
+            'applicants': {
+                $elemMatch: {
+                    influencerId: influencerId,
+                    status: 'accepted'
+                }
+            }
+        }).select('budget');
+
+        const earnings = acceptedCampaigns.reduce((sum, campaign) => {
+            return sum + (campaign.budget || 0);
+        }, 0);
+
         res.json({
             success: true,
             data: {
+                activeCampaigns,
+                collaborations,
                 totalFollowers,
-                campaignsApplied,
-                acceptedCampaigns,
-                socialAccountsCount: user.socialAccounts?.length || 0
+                earnings: Math.round(earnings)
             }
         });
     } catch (error) {
