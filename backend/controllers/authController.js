@@ -75,6 +75,41 @@ exports.signup = async (req, res) => {
             });
         }
 
+        // Brand-specific email validation: must be work email
+        if (userType === 'brand') {
+            const personalEmailDomains = [
+                'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com',
+                'aol.com', 'icloud.com', 'mail.com', 'protonmail.com',
+                'yandex.com', 'zoho.com', 'gmx.com', 'live.com'
+            ];
+            const emailDomain = email.split('@')[1]?.toLowerCase();
+            if (personalEmailDomains.includes(emailDomain)) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Please use a work email address, not a personal email (Gmail, Yahoo, etc.)'
+                });
+            }
+        }
+
+        // Password strength validation
+        if (password.length < 6) {
+            return res.status(400).json({
+                success: false,
+                message: 'Password must be at least 6 characters'
+            });
+        }
+
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+
+        if (!hasUpperCase || !hasLowerCase || !hasNumber) {
+            return res.status(400).json({
+                success: false,
+                message: 'Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number'
+            });
+        }
+
         // Check if user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {

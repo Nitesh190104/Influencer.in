@@ -48,16 +48,42 @@ const Signup = () => {
       return;
     }
 
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setMessage('Please enter a valid email address');
+      setMessageType('error');
+      return;
+    }
+
+    // Brand-specific email validation: must be work email (not Gmail, Yahoo, etc.)
+    if (userType === 'brand') {
+      const personalEmailDomains = [
+        'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com',
+        'aol.com', 'icloud.com', 'mail.com', 'protonmail.com',
+        'yandex.com', 'zoho.com', 'gmx.com', 'live.com'
+      ];
+      const emailDomain = formData.email.split('@')[1]?.toLowerCase();
+      if (personalEmailDomains.includes(emailDomain)) {
+        setMessage('Please use a work email address, not a personal email (Gmail, Yahoo, etc.)');
+        setMessageType('error');
+        return;
+      }
+    }
+
+    // Password strength validation
     if (formData.password.length < 6) {
       setMessage('Password must be at least 6 characters');
       setMessageType('error');
       return;
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setMessage('Please enter a valid email address');
+    const hasUpperCase = /[A-Z]/.test(formData.password);
+    const hasLowerCase = /[a-z]/.test(formData.password);
+    const hasNumber = /[0-9]/.test(formData.password);
+
+    if (!hasUpperCase || !hasLowerCase || !hasNumber) {
+      setMessage('Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number');
       setMessageType('error');
       return;
     }
